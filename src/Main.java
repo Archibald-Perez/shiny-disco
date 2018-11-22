@@ -14,4 +14,23 @@ public class Main {
 			System.out.println(scan.nextLine());
 		}
 	}
+	public static Byte nbrejoueurs(){ //la fonction qui récupère le nombre de joueur
+		Scanner a = new Scanner(System.in);
+		Byte n = null;
+		while (n == null){
+			try {
+				n=a.nextByte();
+			}
+			catch(Exception e) {
+				System.out.println("Ce n'est pas un entier");
+			}
+		}
+		return n;
+
+	}
+	public static void menu(){
+		System.out.println("Domi'Nations");
+		System.out.println("1. Jouer une partie");
+		System.out.println("2. Quitter");
+	}
 }
