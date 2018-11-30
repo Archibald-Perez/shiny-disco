@@ -7,4 +7,4 @@ Faire un dictionnaire : [clé : Numéro des dominos, liste: élément 1 : nombre
 Fonction placement de domino (condition à l'intérieur)   ====> DIFFICILE
 Fonction choisir le domino ====> FACILE
 
-Un test coucou les gars :D Akhara 
+Un test coucou les gars :D Akhara
