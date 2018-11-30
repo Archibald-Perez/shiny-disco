@@ -23,6 +23,8 @@ public class Main {
 				if (n > 4 || n<0) {
 					System.out.println("Nombre de joueurs incorrect.");
 					continue;
+				} else {
+					break;
 				}
 			}
 			catch(Exception e) {
