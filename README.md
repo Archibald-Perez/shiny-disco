@@ -1,5 +1,5 @@
 # shiny-disco
-Coucou 
+Coucou
 Fonction qui compte le nombre de points (renvoie une liste)   ====> MOYEN
 Fonction menu (commencer, quitter, combien de joueur, combien de roi)    ====> FACILE
 Fonction qui distribue aléatoirement les cartes (en fonction du nombre de roi)  ====> FACILE
