@@ -4,6 +4,7 @@ public class Domino {
     public char zone2;
     public int crown1;
     public int crown2;
+    public Domino(){}
 
     public Domino(int number, char zone1, char zone2, int crown1, int crown2){
         this.number = number;
@@ -12,4 +13,8 @@ public class Domino {
         this.crown1= crown1;
         this.crown2 = crown2;
     }
+
+
+
 }
+
