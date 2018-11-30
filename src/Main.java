@@ -17,9 +17,13 @@ public class Main {
 	public static Byte nbrejoueurs(){ //la fonction qui récupère le nombre de joueur
 		Scanner a = new Scanner(System.in);
 		Byte n = null;
-		while (n == null){
+		while (true){
 			try {
 				n=a.nextByte();
+				if (n > 4 || n<0) {
+					System.out.println("Nombre de joueurs incorrect.");
+					continue;
+				}
 			}
 			catch(Exception e) {
 				System.out.println("Ce n'est pas un entier");
