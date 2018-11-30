@@ -7,6 +7,7 @@ import java.io.*;
  *
  */
 public class Main {
+	public static int nbPlayers;
 	public static void main(String[] args) throws FileNotFoundException {
 		File dominos = new File("dominos.txt");
 		Scanner scan = new Scanner(dominos);
@@ -14,13 +15,13 @@ public class Main {
 			System.out.println(scan.nextLine());
 		}
 	}
-	public static Byte nbrejoueurs(){ //la fonction qui récupère le nombre de joueur
+	public static Byte chooseNbPlayers(){ //la fonction qui récupère le nombre de joueur
 		Scanner a = new Scanner(System.in);
 		Byte n = null;
 		while (true){
 			try {
 				n=a.nextByte();
-				if (n > 4 || n<0) {
+				if (n > 4 || n<=0) {
 					System.out.println("Nombre de joueurs incorrect.");
 					continue;
 				} else {
