@@ -9,12 +9,12 @@ import java.io.*;
 public class Main {
 	public static int nbPlayers;
 	public static void main(String[] args) {
-		// Lance le menu
+		// Menu
 			// Choix du nombre de joueur
 			// Nom des joueurs + AI ou pas
+		// Créer les joueurs
 		// Création des dominos
-			// Lecture des dominos depuis le fichier texte
-			// Créer les objet DominoInDeck
+		List<Domino> dominos = DominoManager.dominos;
 		// Début de la partie
 		// Choisi l'ordre initial des joueurs
 		// Tant qu'il y a des dominos dans la pioche {
@@ -53,11 +53,5 @@ public class Main {
 		System.out.println("1. Jouer une partie");
 		System.out.println("2. Quitter");
 	}
-	public static void createDominos() throws FileNotFoundException {
-		File dominos = new File("dominos.txt");
-		Scanner scan = new Scanner(dominos);
-		while (scan.hasNextLine()) {
-			System.out.println(scan.nextLine());
-		}
-	}
+	
 }
