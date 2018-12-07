@@ -4,6 +4,7 @@ import java.util.*;
 public class PlayerManager {
     public static List<Player> players = new ArrayList<>();
     public static Byte nbKing = 4;
+    public static Byte nbPlayer = 4;
 
     public static boolean choix(){
         Scanner scan = new Scanner(System.in);
@@ -31,12 +32,12 @@ public class PlayerManager {
 
     }
 
-    public static Byte chooseNbPlayers(){ //la fonction qui récupère le nombre de joueur
-        Scanner a = new Scanner(System.in);
+    public static void chooseNbPlayers(){ //la fonction qui récupère le nombre de joueur
+        Scanner scan = new Scanner(System.in);
         Byte n = null;
         while (true){
             try {
-                n=a.nextByte();
+                n=scan.nextByte();
                 if (n > 4 || n<=0) {
                     System.out.println("Nombre de joueurs incorrect.");
                     continue;
@@ -48,7 +49,10 @@ public class PlayerManager {
                 System.out.println("Ce n'est pas un entier");
             }
         }
-        return n;
+        if (n==3) {
+        	nbKing = 3;
+        }
+        nbPlayer = n;
 
     }
 
