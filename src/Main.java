@@ -12,7 +12,10 @@ public class Main {
 		// Menu
 			PlayerManager.chooseNbPlayers();
 			PlayerManager.createPlayers();
-		// Créer les joueurs
+			for (int i=0;i<PlayerManager.players.size();i++) {
+				Player player = PlayerManager.players.get(i);
+				System.out.println(player);
+			}
 		DominoManager.createDominos();
 		// Début de la partie
 		// Choisi l'ordre initial des joueurs

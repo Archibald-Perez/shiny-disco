@@ -17,7 +17,7 @@ public class Player {
     @Override
     public String toString() {
         return "Joueur "+name+" {" +
-                ", est une IA = " + isAI +
+                "est une IA = " + isAI +
                 ", couleur = " + color +
                 '}';
     }
