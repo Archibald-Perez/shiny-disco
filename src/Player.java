@@ -10,5 +10,9 @@ public class Player {
         this.isAI=isAI;
         this.color= color;
     }
+
+    public static void sequence(){
+
+    }
 }
 
