@@ -34,6 +34,7 @@ public class PlayerManager {
 
     public static void chooseNbPlayers(){ //la fonction qui récupère le nombre de joueur
         Scanner scan = new Scanner(System.in);
+        System.out.println("Entrez le nombre de joueurs");
         Byte n = null;
         while (true){
             try {
@@ -46,7 +47,8 @@ public class PlayerManager {
                 }
             }
             catch(Exception e) {
-                System.out.println("Ce n'est pas un entier");
+                System.out.println("Nombre incorrect.");
+                scan.nextLine();
             }
         }
         if (n==3) {
