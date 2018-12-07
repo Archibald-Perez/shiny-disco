@@ -5,6 +5,8 @@ public class PlayerManager {
     public static List<Player> players = new ArrayList<>();
     public static Byte nbKing = 4;
     public static Byte nbPlayer = 4;
+    public static List<Integer> sequenceInitial = new ArrayList<Integer>();
+    public  static List<Integer> sequence = new ArrayList<Integer>();
 
     public static boolean choix(){
         Scanner scan = new Scanner(System.in);
@@ -91,5 +93,20 @@ public class PlayerManager {
             Player player = new Player(namePlayer, choixAI, color );
             players.add(player);
         }
+    }
+
+    public static void initialSequence(){
+        Random rand = new Random();
+        for (int i = 1; i<nbPlayer+1; i++){
+            sequenceInitial.add(i);
+
+        }
+        int n = sequence.size();
+        for (Byte i = 0; i<nbKing; i++){
+            int num = rand.nextInt(n);
+            int ordre = sequence.get(num);
+
+        }
+
     }
 }
