@@ -10,7 +10,8 @@ public class Main {
 	public static int nbPlayers;
 	public static void main(String[] args) throws FileNotFoundException{
 		// Menu
-			Byte nbPlayers = PlayerManager.chooseNbPlayers();
+			PlayerManager.chooseNbPlayers();
+			
 			// Nom des joueurs + AI ou pas
 		// Créer les joueurs
 		DominoManager.createDominos();
