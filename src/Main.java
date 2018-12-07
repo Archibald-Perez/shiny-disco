@@ -11,8 +11,7 @@ public class Main {
 	public static void main(String[] args) throws FileNotFoundException{
 		// Menu
 			PlayerManager.chooseNbPlayers();
-			
-			// Nom des joueurs + AI ou pas
+			PlayerManager.createPlayers();
 		// Créer les joueurs
 		DominoManager.createDominos();
 		// Début de la partie
