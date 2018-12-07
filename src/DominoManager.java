@@ -23,8 +23,20 @@ public class DominoManager {
 			Domino domino = new Domino(Integer.parseInt(elements[4]),elements[1],elements[3],Integer.parseInt(elements[0]),Integer.parseInt(elements[2]));
 			dominos.add(domino);
 		}
+		removeRndDominos();
 	}
 	
+	public static void removeRndDominos() {
+		Random random = new Random();
+		while(nbInDeck > PlayerManager.nbPlayer*12) {
+			int numDomino = random.nextInt(48);
+			Domino testDomino = dominos.get(numDomino);
+			if (testDomino.isInDeck) {
+				testDomino.isInDeck = false;
+				nbInDeck--;
+			}
+		}
+	}
 	public static void selectDominos() {
 		selectedDominos.clear();
 		Random random = new Random();
