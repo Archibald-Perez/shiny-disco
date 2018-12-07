@@ -1,4 +1,4 @@
-import java.io.*;
+import java.awt.Color;
 import java.util.*;
 
 public class PlayerManager {
@@ -55,9 +55,35 @@ public class PlayerManager {
     public static void createPlayer(Byte nbPlayer){
         Scanner scan = new Scanner(System.in);
         for (Byte i = 1; i< nbPlayer+1; i++){
-            String player = "Player" + i;
-            System.out.println("Player"+i);
-            System.out.println("AI ?");
+            String namePlayer = "Player" + i;
+            System.out.println(namePlayer);
+            System.out.println("Le joueur est-il un AI ?");
+            Boolean choixAI = choix();
+            if (!choixAI) {
+                System.out.println("Veuillez saisir votre nom");
+                namePlayer = scan.nextLine();
+
+            }
+            Color color;
+            switch (i){
+                case 1 :
+                    color = Color.pink;
+                    break;
+
+                case 2 :
+                    color = Color.cyan;
+                    break;
+
+                case 3 :
+                    color = Color.magenta;
+                    break;
+
+                default:
+                    color = Color.green;
+                    break;
+            }
+            Player player = new Player(namePlayer, choixAI, color );
+            players.add(player);
 
         }
 
