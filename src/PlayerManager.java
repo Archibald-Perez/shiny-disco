@@ -65,7 +65,7 @@ public class PlayerManager {
             System.out.println(namePlayer);
             System.out.println("Le joueur est-il un AI ?");
             Boolean choixAI = choix();
-            if (!choixAI) {
+            if (choixAI) {
                 System.out.println("Veuillez saisir votre nom");
                 namePlayer = scan.nextLine();
 
