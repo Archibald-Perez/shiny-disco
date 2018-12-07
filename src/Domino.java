@@ -13,8 +13,16 @@ public class Domino {
         this.crown1= crown1;
         this.crown2 = crown2;
     }
-
-
-
+    
+    @Override
+    public String toString() {
+        return "Domino{" +
+                "number=" + number +
+                ", zone1=" + zone1 +
+                ", zone2=" + zone2 +
+                ", crown1=" + crown1 +
+                ", crown2=" + crown2 +
+                '}';
+    }
 }
 

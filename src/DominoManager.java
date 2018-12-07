@@ -2,6 +2,13 @@ import java.io.*;
 import java.util.*;
 
 public class DominoManager {
+	public static void main(String[] args) throws FileNotFoundException {
+		createDominos();
+		for (int i=0;i<dominos.size();i++) {
+			Domino domino = dominos.get(i);
+			System.out.println(domino);
+		}
+	}
 	public static List<Domino> dominos = new ArrayList<>();
 	
 	public static void createDominos() throws FileNotFoundException {
@@ -12,5 +19,9 @@ public class DominoManager {
 			DominoInDeck domino = new DominoInDeck(Integer.parseInt(elements[4]),elements[1],elements[3],Integer.parseInt(elements[0]),Integer.parseInt(elements[2]));
 			dominos.add(domino);
 		}
+	}
+	
+	public static void selectDominos() {
+		
 	}
 }
