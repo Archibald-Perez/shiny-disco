@@ -2,10 +2,10 @@ import java.awt.Color;
 import java.util.*;
 
 public class PlayerManager {
-    public static List<Player> players = new ArrayList<>();
-    public static Byte nbKing = 4;
-    public static Byte nbPlayer = 2;
-    public static List<Integer> sequence = new ArrayList<Integer>();
+    private static List<Player> players = new ArrayList<>();
+    private static Byte nbKing = 4;
+    private static Byte nbPlayer = 2;
+    private static List<Integer> sequence = new ArrayList<Integer>();
 
 
     public static void main(String[] args){
@@ -127,5 +127,14 @@ public class PlayerManager {
 
         }
 
+    }
+    public static List<Player> getPlayers() {
+    	return players;
+    }
+    public static int getNbPlayer() {
+    	return nbPlayer;
+    }
+    public static int getNbKing() {
+    	return nbKing;
     }
 }
