@@ -58,7 +58,7 @@ public class PlayerManager {
 
     }
 
-    public static void createPlayer(Byte nbPlayer){
+    public static void createPlayers(){
         Scanner scan = new Scanner(System.in);
         for (Byte i = 1; i< nbPlayer+1; i++){
             String namePlayer = "Player" + i;
