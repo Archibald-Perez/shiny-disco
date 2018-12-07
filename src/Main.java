@@ -10,7 +10,7 @@ public class Main {
 	public static int nbPlayers;
 	public static void main(String[] args) {
 		// Menu
-			Byte nbPlayers = chooseNbPlayers();
+			Byte nbPlayers = PlayerManager.chooseNbPlayers();
 			// Nom des joueurs + AI ou pas
 		// Créer les joueurs
 		// Création des dominos
@@ -28,26 +28,7 @@ public class Main {
 		// Affiche le vainqueur
 		// Retourne au menu
 	}
-	public static Byte chooseNbPlayers(){ //la fonction qui récupère le nombre de joueur
-		Scanner a = new Scanner(System.in);
-		Byte n = null;
-		while (true){
-			try {
-				n=a.nextByte();
-				if (n > 4 || n<=0) {
-					System.out.println("Nombre de joueurs incorrect.");
-					continue;
-				} else {
-					break;
-				}
-			}
-			catch(Exception e) {
-				System.out.println("Ce n'est pas un entier");
-			}
-		}
-		return n;
 
-	}
 	public static void menu(){
 		System.out.println("Domi'Nations");
 		System.out.println("1. Jouer une partie");

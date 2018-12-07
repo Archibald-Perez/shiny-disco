@@ -1,7 +1,9 @@
 import java.io.*;
 import java.util.*;
+
 public class PlayerManager {
     public static List<Player> players = new ArrayList<>();
+    public static Byte nbKing = 4;
 
     public static boolean choix(){
         Scanner scan = new Scanner(System.in);
@@ -10,7 +12,12 @@ public class PlayerManager {
             try{
                 String yesno= scan.nextLine();
                 if (yesno.equals("y") || yesno.equals("n")){
-                    break;
+                    if(yesno.equals("yes")){
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
                 }
                 else {
                     System.out.println("Ce n'est pas la réponse attendue");
@@ -18,9 +25,30 @@ public class PlayerManager {
                 }
             }
             catch(Exception e) {
-                System.out.println();
+                System.out.println("Ce n'est pas la réponse attendue");
             }
         }
+
+    }
+
+    public static Byte chooseNbPlayers(){ //la fonction qui récupère le nombre de joueur
+        Scanner a = new Scanner(System.in);
+        Byte n = null;
+        while (true){
+            try {
+                n=a.nextByte();
+                if (n > 4 || n<=0) {
+                    System.out.println("Nombre de joueurs incorrect.");
+                    continue;
+                } else {
+                    break;
+                }
+            }
+            catch(Exception e) {
+                System.out.println("Ce n'est pas un entier");
+            }
+        }
+        return n;
 
     }
 
