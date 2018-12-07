@@ -14,5 +14,12 @@ public class Player {
     public static void sequence(){
 
     }
+    @Override
+    public String toString() {
+        return "Joueur "+name+" {" +
+                ", est une IA = " + isAI +
+                ", couleur = " + color +
+                '}';
+    }
 }
 
