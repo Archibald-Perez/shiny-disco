@@ -4,14 +4,14 @@ import java.util.*;
 public class PlayerManager {
     public static List<Player> players = new ArrayList<>();
     public static Byte nbKing = 4;
-    public static Byte nbPlayer = 4;
-    public static List<Integer> sequenceInitial = new ArrayList<Integer>();
-    public  static List<Integer> sequence = new ArrayList<Integer>();
+    public static Byte nbPlayer = 2;
+    public static List<Integer> sequence = new ArrayList<Integer>();
+
 
     public static void main(String[] args){
         initialSequence();
-        for (int i = 0; i< sequenceInitial.size(); i++){
-            System.out.println(sequenceInitial.get(i));
+        for (int i = 0; i< sequence.size(); i++){
+            System.out.println(sequence.get(i));
         }
     }
 
@@ -107,17 +107,23 @@ public class PlayerManager {
         if (nbPlayer>2){
             for (Byte i = 0; i<nbKing; i++){
                 int num = rand.nextInt(nbKing);
-                if (sequenceInitial.contains(num)){
-                    while(sequenceInitial.contains(num)){
+                if (sequence.contains(num)){
+                    while(sequence.contains(num)){
                         int n = rand.nextInt(nbKing);
                         num = n;
 
                     }
                 }
-                sequenceInitial.add(num);
+                sequence.add(num);
             }
         }
         else {
+            ArrayList<Integer> ordre = new ArrayList<>(Arrays.asList(1,1,0,0));
+            for (int i = 0; i<4; i++){
+                int num = rand.nextInt(3);
+                sequence.add(ordre.get(i));
+                ordre.remove(i);
+            }
 
         }
 
