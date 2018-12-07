@@ -28,7 +28,7 @@ public class DominoManager {
 	
 	public static void removeRndDominos() {
 		Random random = new Random();
-		while(nbInDeck > PlayerManager.nbPlayer*12) {
+		while(nbInDeck > PlayerManager.getNbPlayer()*12) {
 			int numDomino = random.nextInt(48);
 			Domino testDomino = dominos.get(numDomino);
 			if (testDomino.isInDeck) {
@@ -40,7 +40,7 @@ public class DominoManager {
 	public static void selectDominos() {
 		selectedDominos.clear();
 		Random random = new Random();
-		while(selectedDominos.size() < PlayerManager.nbKing) {
+		while(selectedDominos.size() < PlayerManager.getNbKing()) {
 			int len = selectedDominos.size();
 			int numDomino = random.nextInt(48);
 			Domino testDomino = dominos.get(numDomino);
@@ -57,4 +57,13 @@ public class DominoManager {
 			}
 		}
 	}
+	public static List<Domino> getDominos() {
+    	return dominos;
+    }
+	public static List<Domino> getSelectedDominos() {
+    	return selectedDominos;
+    }
+	public static int getNbInDeck() {
+    	return nbInDeck;
+    }
 }
