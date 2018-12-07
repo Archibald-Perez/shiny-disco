@@ -8,6 +8,13 @@ public class PlayerManager {
     public static List<Integer> sequenceInitial = new ArrayList<Integer>();
     public  static List<Integer> sequence = new ArrayList<Integer>();
 
+    public static void main(String[] args){
+        initialSequence();
+        for (int i = 0; i< sequenceInitial.size(); i++){
+            System.out.println(sequenceInitial.get(i));
+        }
+    }
+
     public static boolean choix(){
         Scanner scan = new Scanner(System.in);
         System.out.println("y/n?");
@@ -97,15 +104,15 @@ public class PlayerManager {
 
     public static void initialSequence(){
         Random rand = new Random();
-        for (int i = 1; i<nbPlayer+1; i++){
-            sequenceInitial.add(i);
-
-        }
-        int n = sequence.size();
         for (Byte i = 0; i<nbKing; i++){
-            int num = rand.nextInt(n);
-            int ordre = sequence.get(num);
-
+            int num = rand.nextInt(nbKing);
+            if (sequenceInitial.contains(num)){
+                while(sequenceInitial.contains(num)){
+                    try{
+                        int n = rand.nextInt(nbKing);
+                    }
+                }
+            }
         }
 
     }
