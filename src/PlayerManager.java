@@ -90,8 +90,6 @@ public class PlayerManager {
             }
             Player player = new Player(namePlayer, choixAI, color );
             players.add(player);
-
         }
     }
-
 }
