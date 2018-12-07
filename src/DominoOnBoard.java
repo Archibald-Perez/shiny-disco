@@ -4,7 +4,7 @@ public class DominoOnBoard extends Domino{
     public int orientation;
     public Board board;
 
-        public DominoOnBoard(int number, char zone1, char zone2, int crown1, int crown2, Board board, int posx, int posy, int orientation){
+        public DominoOnBoard(int number, String zone1, String zone2, int crown1, int crown2, Board board, int posx, int posy, int orientation){
             this.number = number;
             this.zone1= zone1;
             this.zone2 = zone2;
