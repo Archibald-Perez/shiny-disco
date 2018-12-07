@@ -2,16 +2,17 @@ import java.io.*;
 import java.util.*;
 
 public class DominoManager {
+	public static List<Domino> dominos = new ArrayList<>();
+	public static List<Domino> selectedDominos = new ArrayList<>();
+	
 	public static void main(String[] args) throws FileNotFoundException {
 		createDominos();
-		for (int i=0;i<dominos.size();i++) {
-			Domino domino = dominos.get(i);
-			if (domino.isInDeck) {
+		selectDominos();
+		for (int i=0;i<selectedDominos.size();i++) {
+			Domino domino = selectedDominos.get(i);
 			System.out.println(domino);
-			}
 		}
 	}
-	public static List<Domino> dominos = new ArrayList<>();
 	
 	public static void createDominos() throws FileNotFoundException {
 		File dominoFile = new File("dominos.txt");
@@ -24,6 +25,15 @@ public class DominoManager {
 	}
 	
 	public static void selectDominos() {
-		
+		selectedDominos.clear();
+		Random random = new Random();
+		while(selectedDominos.size() < PlayerManager.nbKing) {
+			int numDomino = random.nextInt(48);
+			Domino testDomino = dominos.get(numDomino);
+			if (testDomino.isInDeck) {
+				testDomino.isInDeck = false;
+				selectedDominos.add(testDomino);
+			}
+		}
 	}
 }
