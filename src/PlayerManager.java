@@ -109,20 +109,16 @@ public class PlayerManager {
                 int num = rand.nextInt(nbKing);
                 if (sequenceInitial.contains(num)){
                     while(sequenceInitial.contains(num)){
-                        try{
-                            int n = rand.nextInt(nbKing);
-                            num = n;
-                        }
-                        catch (Exception e){
+                        int n = rand.nextInt(nbKing);
+                        num = n;
 
-                        }
                     }
                 }
                 sequenceInitial.add(num);
             }
         }
         else {
-            
+
         }
 
     }
