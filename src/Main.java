@@ -17,13 +17,13 @@ public class Main {
 		List<Domino> dominos = DominoManager.dominos;
 		// Début de la partie
 		// Choisi l'ordre initial des joueurs
-		// Tant qu'il y a des dominos dans la pioche {
-			// Sélectionne aléatoirement les dominos
+		while(DominoManager.nbInDeck > 0) {
+			DominoManager.selectDominos();
 			// Les joueurs choisissent leurs dominos
 			// Boucles des joueurs {
 				// Le joueur place son domino
 			// }
-		// }
+		}
 		// Calcule des scores
 		// Affiche le vainqueur
 		// Retourne au menu
