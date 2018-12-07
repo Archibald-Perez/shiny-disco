@@ -6,7 +6,9 @@ public class DominoManager {
 		createDominos();
 		for (int i=0;i<dominos.size();i++) {
 			Domino domino = dominos.get(i);
+			if (domino.isInDeck) {
 			System.out.println(domino);
+			}
 		}
 	}
 	public static List<Domino> dominos = new ArrayList<>();
@@ -16,7 +18,7 @@ public class DominoManager {
 		Scanner scan = new Scanner(dominoFile);
 		while (scan.hasNextLine()) {
 			String[] elements = scan.nextLine().split(",");
-			DominoInDeck domino = new DominoInDeck(Integer.parseInt(elements[4]),elements[1],elements[3],Integer.parseInt(elements[0]),Integer.parseInt(elements[2]));
+			Domino domino = new Domino(Integer.parseInt(elements[4]),elements[1],elements[3],Integer.parseInt(elements[0]),Integer.parseInt(elements[2]));
 			dominos.add(domino);
 		}
 	}
