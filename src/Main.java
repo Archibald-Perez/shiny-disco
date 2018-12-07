@@ -7,14 +7,22 @@ import java.io.*;
  *
  */
 public class Main {
-	public static int nbPlayers;
+	public static List<Board> boards = new ArrayList<>();
 	public static void main(String[] args) throws FileNotFoundException{
 		// Menu
 			PlayerManager.chooseNbPlayers();
 			PlayerManager.createPlayers();
-		// Créer les joueurs
+			for (int i=0;i<PlayerManager.players.size();i++) {
+				Player player = PlayerManager.players.get(i);
+				System.out.println(player);
+			}
+			System.out.println("");
 		DominoManager.createDominos();
 		// Début de la partie
+		for (int i=0;i<PlayerManager.nbPlayer;i++) {
+			Board board = new Board(9, PlayerManager.players.get(i));
+			boards.add(board);
+		}
 		// Choisi l'ordre initial des joueurs
 		while(DominoManager.nbInDeck > 0) {
 			DominoManager.selectDominos();
