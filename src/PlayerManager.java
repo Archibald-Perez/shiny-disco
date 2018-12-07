@@ -104,15 +104,25 @@ public class PlayerManager {
 
     public static void initialSequence(){
         Random rand = new Random();
-        for (Byte i = 0; i<nbKing; i++){
-            int num = rand.nextInt(nbKing);
-            if (sequenceInitial.contains(num)){
-                while(sequenceInitial.contains(num)){
-                    try{
-                        int n = rand.nextInt(nbKing);
+        if (nbPlayer>2){
+            for (Byte i = 0; i<nbKing; i++){
+                int num = rand.nextInt(nbKing);
+                if (sequenceInitial.contains(num)){
+                    while(sequenceInitial.contains(num)){
+                        try{
+                            int n = rand.nextInt(nbKing);
+                            num = n;
+                        }
+                        catch (Exception e){
+
+                        }
                     }
                 }
+                sequenceInitial.add(num);
             }
+        }
+        else {
+            
         }
 
     }
