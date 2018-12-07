@@ -41,12 +41,19 @@ public class DominoManager {
 		selectedDominos.clear();
 		Random random = new Random();
 		while(selectedDominos.size() < PlayerManager.nbKing) {
+			int len = selectedDominos.size();
 			int numDomino = random.nextInt(48);
 			Domino testDomino = dominos.get(numDomino);
 			if (testDomino.isInDeck) {
 				testDomino.isInDeck = false;
 				nbInDeck--;
-				selectedDominos.add(testDomino);
+				int index = len;
+				for(int i = len -1; i>=0; i--) {
+					if (selectedDominos.get(i).number > testDomino.number) {
+						index = i;
+					}
+				}
+				selectedDominos.add(index, testDomino);
 			}
 		}
 	}
