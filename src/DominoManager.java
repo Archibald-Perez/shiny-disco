@@ -2,9 +2,9 @@ import java.io.*;
 import java.util.*;
 
 public class DominoManager {
-	public static List<Domino> dominos = new ArrayList<>();
-	public static List<Domino> selectedDominos = new ArrayList<>();
-	public static int nbInDeck = 48;
+	private static List<Domino> dominos = new ArrayList<>();
+	private static List<Domino> selectedDominos = new ArrayList<>();
+	private static int nbInDeck = 48;
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		createDominos();
@@ -49,7 +49,7 @@ public class DominoManager {
 				nbInDeck--;
 				int index = len;
 				for(int i = len -1; i>=0; i--) {
-					if (selectedDominos.get(i).number > testDomino.number) {
+					if (selectedDominos.get(i).getNumber() > testDomino.getNumber()) {
 						index = i;
 					}
 				}

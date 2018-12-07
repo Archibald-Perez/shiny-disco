@@ -1,9 +1,9 @@
 public class Domino {
-    public int number;
-    public String zone1;
-    public String zone2;
-    public int crown1;
-    public int crown2;
+    private int number;
+    private String zone1;
+    private String zone2;
+    private int crown1;
+    private int crown2;
     public boolean isInDeck = true;
     
     public Domino(){}
@@ -16,6 +16,9 @@ public class Domino {
         this.crown2 = crown2;
     }
     
+    public int getNumber() {
+    	return number;
+    }
     @Override
     public String toString() {
         return "Domino "+number+" {" +

@@ -1,7 +1,7 @@
 public class DominoOnBoard extends Domino{
-    public int posx;
-    public int posy;
-    public int orientation;
+    private int posx;
+    private int posy;
+    private int orientation;
     	// 0 siginfie que la zone 2 est en postion x+1, y
     	// 1 siginfie que la zone 2 est en postion x, y-1
     	// 2 siginfie que la zone 2 est en postion x-1, y

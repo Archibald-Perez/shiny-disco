@@ -1,12 +1,9 @@
 import java.awt.*;
-import java.util.*;
-import java.util.List;
-import java.util.Random;
 
 public class Player {
-    public String name;
-    public Boolean isAI;
-    public Color color;
+    private String name;
+    private Boolean isAI;
+    private Color color;
 
 
     public Player(String name, Boolean isAI, Color color){
