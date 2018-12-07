@@ -4,7 +4,7 @@ import java.util.*;
 public class PlayerManager {
     private static List<Player> players = new ArrayList<>();
     private static Byte nbKing = 4;
-    private static Byte nbPlayer = 2;
+    private static Byte nbPlayer = 4;
     private static List<Integer> sequence = new ArrayList<Integer>();
 
 
