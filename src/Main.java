@@ -8,13 +8,12 @@ import java.io.*;
  */
 public class Main {
 	public static int nbPlayers;
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException{
 		// Menu
 			Byte nbPlayers = PlayerManager.chooseNbPlayers();
 			// Nom des joueurs + AI ou pas
 		// Créer les joueurs
-		// Création des dominos
-		List<Domino> dominos = DominoManager.dominos;
+		DominoManager.createDominos();
 		// Début de la partie
 		// Choisi l'ordre initial des joueurs
 		while(DominoManager.nbInDeck > 0) {
