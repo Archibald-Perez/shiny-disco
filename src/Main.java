@@ -34,11 +34,11 @@ public class Main {
 		for (int i = 0; i< PlayerManager.getNbKing(); i++) {
 			Player turnPlayer = PlayerManager.getPlayers().get(PlayerManager.getSequence().get(i));
 			System.out.println(turnPlayer.getName()+" choisi un domino");
-			PlayerManager.getDominoSequence().add(turnPlayer.selectDomino());
-			
+			Domino selDom = turnPlayer.selectDomino();
+			PlayerManager.getDominoSequence().add(selDom);
 		}
 		System.out.println("");
-		
+		PlayerManager.restartSequence();
 		while(DominoManager.getNbInDeck() > 0) {
 			DominoManager.selectDominos();
 			for (int i=0;i<DominoManager.getSelectedDominos().size();i++) {
@@ -55,6 +55,7 @@ public class Main {
 				PlayerManager.getDominoSequence().add(turnPlayer.selectDomino());
 			}
 			System.out.println("");
+			PlayerManager.restartSequence();
 		}
 		// Calcule des scores
 		// Affiche le vainqueur

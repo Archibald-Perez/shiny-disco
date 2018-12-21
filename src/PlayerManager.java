@@ -122,6 +122,10 @@ public class PlayerManager {
             }
 
     }
+    public static void restartSequence() {
+    	sequence = nextSequence;
+    	nextSequence.clear();
+    }
     public static List<Player> getPlayers() {
     	return players;
     }
@@ -133,6 +137,9 @@ public class PlayerManager {
     }
     public static List<Integer> getSequence() {
     	return sequence;
+    }
+    public static List<Integer> getNextSequence() {
+    	return nextSequence;
     }
     public static List<Domino> getDominoSequence() {
     	return dominoSequence;
