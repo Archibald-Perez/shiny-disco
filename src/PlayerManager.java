@@ -6,6 +6,7 @@ public class PlayerManager {
     private static Byte nbKing = 4;
     private static Byte nbPlayer = 4;
     private static List<Integer> sequence = new ArrayList<Integer>();
+    private static List<Integer> nextSequence = sequence;
 
 
     public static void main(String[] args){
@@ -77,22 +78,18 @@ public class PlayerManager {
             if (!choixAI) {
                 System.out.println("Veuillez saisir votre nom");
                 namePlayer = scan.nextLine();
-
             }
             Color color;
             switch (i){
                 case 1 :
                     color = Color.pink;
                     break;
-
                 case 2 :
                     color = Color.cyan;
                     break;
-
                 case 3 :
                     color = Color.magenta;
                     break;
-
                 default:
                     color = Color.green;
                     break;

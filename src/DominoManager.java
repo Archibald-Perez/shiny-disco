@@ -4,6 +4,7 @@ import java.util.*;
 public class DominoManager {
 	private static List<Domino> dominos = new ArrayList<>();
 	private static List<Domino> selectedDominos = new ArrayList<>();
+	private static List<Integer> selectedDominosNumbers = new ArrayList<>();
 	private static int nbInDeck = 48;
 	
 	public static void main(String[] args) throws FileNotFoundException {
@@ -54,6 +55,7 @@ public class DominoManager {
 					}
 				}
 				selectedDominos.add(index, testDomino);
+				selectedDominosNumbers.add(index, testDomino.getNumber());
 			}
 		}
 	}
@@ -62,6 +64,9 @@ public class DominoManager {
     }
 	public static List<Domino> getSelectedDominos() {
     	return selectedDominos;
+    }
+	public static List<Integer> getSelectedDominosNumbers() {
+    	return selectedDominosNumbers;
     }
 	public static int getNbInDeck() {
     	return nbInDeck;
