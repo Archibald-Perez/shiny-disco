@@ -29,9 +29,8 @@ public class Player {
 	    			int num = scan.nextInt();
 	    			if(DominoManager.getSelectedDominosNumbers().contains(num)) {
 	    				int index = DominoManager.getSelectedDominosNumbers().indexOf(num);
-	    				DominoManager.getSelectedDominosNumbers().remove(index);
-	    				DominoManager.getSelectedDominos().remove(index);
 	    				Domino domino = DominoManager.getSelectedDominos().get(index);
+	    				DominoManager.getSelectedDominosNumbers().set(index, null);
 	    				System.out.println("Vous avez choisi le domino "+domino);
 	    				return domino;
 	    			} else {

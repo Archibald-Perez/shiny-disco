@@ -22,8 +22,23 @@ public class Main {
 			Board board = new Board(9, PlayerManager.getPlayers().get(i));
 			boards.add(board);
 		}
-		PlayerManager.initialSequence();
+		// Selectionne les premiers dominos
+		DominoManager.selectDominos();
+		for (int i=0;i<DominoManager.getSelectedDominos().size();i++) {
+			Domino domino = DominoManager.getSelectedDominos().get(i);
+			System.out.println(domino);
+		}
+		System.out.println("");
 		// Choisi l'ordre initial des joueurs
+		PlayerManager.initialSequence();
+		for (int i = 0; i< PlayerManager.getNbKing(); i++) {
+			Player turnPlayer = PlayerManager.getPlayers().get(PlayerManager.getSequence().get(i));
+			System.out.println(turnPlayer.getName()+" choisi un domino");
+			PlayerManager.getDominoSequence().add(turnPlayer.selectDomino());
+			
+		}
+		System.out.println("");
+		
 		while(DominoManager.getNbInDeck() > 0) {
 			DominoManager.selectDominos();
 			for (int i=0;i<DominoManager.getSelectedDominos().size();i++) {
@@ -31,16 +46,15 @@ public class Main {
 				System.out.println(domino);
 			}
 			System.out.println("");
+			// Boucle des joueurs
 			for (int i = 0; i< PlayerManager.getNbKing(); i++) {
-				Player turnPlayer = PlayerManager.getPlayers().get(PlayerManager.getSequence().get(i));
-				System.out.println(turnPlayer.getName()+" choisi un domino");
-				turnPlayer.selectDomino();
-			}
-			System.out.println("");
-			// Boucles des joueurs {
 				// Le joueur place son domino
 				// Le joueur choisi le domino suivant
-			// }
+				Player turnPlayer = PlayerManager.getPlayers().get(PlayerManager.getSequence().get(i));
+				System.out.println(turnPlayer.getName()+" choisi un domino");
+				PlayerManager.getDominoSequence().add(turnPlayer.selectDomino());
+			}
+			System.out.println("");
 		}
 		// Calcule des scores
 		// Affiche le vainqueur

@@ -7,6 +7,7 @@ public class PlayerManager {
     private static Byte nbPlayer = 4;
     private static List<Integer> sequence = new ArrayList<Integer>();
     private static List<Integer> nextSequence = sequence;
+    private static List<Domino> dominoSequence = new ArrayList<Domino>();
 
 
     public static void main(String[] args){
@@ -132,5 +133,8 @@ public class PlayerManager {
     }
     public static List<Integer> getSequence() {
     	return sequence;
+    }
+    public static List<Domino> getDominoSequence() {
+    	return dominoSequence;
     }
 }
