@@ -104,7 +104,6 @@ public class PlayerManager {
 
     public static void initialSequence(){
         Random rand = new Random();
-        if (nbPlayer>2){
             for (Byte i = 0; i<nbKing; i++){
                 int num = rand.nextInt(nbKing);
                 if (sequence.contains(num)){
@@ -116,16 +115,13 @@ public class PlayerManager {
                 }
                 sequence.add(num);
             }
-        }
-        else {
-            ArrayList<Integer> ordre = new ArrayList<>(Arrays.asList(1,1,0,0));
-            for (int i = 0; i<4; i++){
-                int num = rand.nextInt(3);
-                sequence.add(ordre.get(i));
-                ordre.remove(i);
+            if(nbPlayer == 2) {
+            	for(int i = 2; i<4; i++) {
+                	int index = sequence.indexOf(i);
+                	sequence.remove(index);
+                	sequence.add(index, i-2);
+            	}
             }
-
-        }
 
     }
     public static List<Player> getPlayers() {
@@ -136,5 +132,8 @@ public class PlayerManager {
     }
     public static int getNbKing() {
     	return nbKing;
+    }
+    public static List<Integer> getSequence() {
+    	return sequence;
     }
 }
