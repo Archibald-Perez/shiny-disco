@@ -5,8 +5,8 @@ public class PlayerManager {
     private static List<Player> players = new ArrayList<>();
     private static Byte nbKing = 4;
     private static Byte nbPlayer = 4;
-    private static List<Integer> sequence = new ArrayList<Integer>();
-    private static List<Integer> nextSequence = sequence;
+    private static List<Integer> sequence = new ArrayList<>();
+    private static int[] nextSequence = new int[nbKing];
     private static List<Domino> dominoSequence = new ArrayList<Domino>();
 
 
@@ -123,8 +123,11 @@ public class PlayerManager {
 
     }
     public static void restartSequence() {
-    	sequence = nextSequence;
-    	nextSequence.clear();
+    	sequence.clear();
+    	for(int i=0; i<nextSequence.length; i++) {
+    		sequence.add(nextSequence[i]);
+    	}
+    	nextSequence = new int[nbKing];
     }
     public static List<Player> getPlayers() {
     	return players;
@@ -138,7 +141,7 @@ public class PlayerManager {
     public static List<Integer> getSequence() {
     	return sequence;
     }
-    public static List<Integer> getNextSequence() {
+    public static int[] getNextSequence() {
     	return nextSequence;
     }
     public static List<Domino> getDominoSequence() {

@@ -30,7 +30,7 @@ public class Player {
 	    			if(DominoManager.getSelectedDominosNumbers().contains(num)) {
 	    				int index = DominoManager.getSelectedDominosNumbers().indexOf(num);
 	    				Domino domino = DominoManager.getSelectedDominos().get(index);
-	    				PlayerManager.getNextSequence().add(DominoManager.getSelectedDominosNumbers().indexOf(domino.getNumber()), PlayerManager.getPlayers().indexOf(this));
+	    				PlayerManager.getNextSequence()[DominoManager.getSelectedDominosNumbers().indexOf(domino.getNumber())] = PlayerManager.getPlayers().indexOf(this);
 	    				DominoManager.getSelectedDominosNumbers().set(index, null);
 	    				System.out.println("Vous avez choisi le domino "+domino);
 	    				return domino;
