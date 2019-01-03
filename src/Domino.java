@@ -19,6 +19,18 @@ public class Domino {
     public int getNumber() {
     	return number;
     }
+    public String getZone1() {
+    	return zone1;
+    }
+    public String getZone2() {
+    	return zone2;
+    }
+    public int getCrown1() {
+    	return crown1;
+    }
+    public int getCrown2() {
+    	return crown2;
+    }
     @Override
     public String toString() {
         return "Domino "+number+" {" +

@@ -7,6 +7,7 @@ import java.io.*;
  */
 public class Main {
 	public static List<Board> boards = new ArrayList<>();
+	
 	public static void main(String[] args) throws FileNotFoundException{
 		// Menu
 			PlayerManager.chooseNbPlayers();
@@ -38,19 +39,26 @@ public class Main {
 			PlayerManager.getDominoSequence().add(selDom);
 		}
 		System.out.println("");
-		PlayerManager.restartSequence();
 		while(DominoManager.getNbInDeck() > 0) {
 			DominoManager.selectDominos();
 			for (int i=0;i<DominoManager.getSelectedDominos().size();i++) {
 				Domino domino = DominoManager.getSelectedDominos().get(i);
 				System.out.println(domino);
 			}
+			PlayerManager.restartSequence();
 			System.out.println("");
 			// Boucle des joueurs
 			for (int i = 0; i< PlayerManager.getNbKing(); i++) {
+				int indexPlayer = PlayerManager.getSequence().get(i);
+				Player turnPlayer = PlayerManager.getPlayers().get(indexPlayer);
+				Domino turnDomino = PlayerManager.getDominoSequence().get(i);
+				Board turnBoard = boards.get(indexPlayer);
+				System.out.println(turnBoard);
+				System.out.println("Le joueur "+turnPlayer.getName()+" place le domino : "+turnDomino);
 				// Le joueur place son domino
+				turnPlayer.setDomino(turnBoard, turnDomino);
+				System.out.println(turnBoard);
 				// Le joueur choisi le domino suivant
-				Player turnPlayer = PlayerManager.getPlayers().get(PlayerManager.getSequence().get(i));
 				System.out.println(turnPlayer.getName()+" choisi un domino");
 				PlayerManager.getDominoSequence().add(turnPlayer.selectDomino());
 			}

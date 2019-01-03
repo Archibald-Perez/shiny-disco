@@ -45,6 +45,108 @@ public class Player {
     	}
     }
 
+    public void setDomino(Board board, Domino domino) {
+		Scanner scan = new Scanner(System.in);
+		boolean isWrong = true;
+		while(isWrong) {
+			System.out.println("Entrez la position en Y de la première case.");
+			int posY = 0;
+			while(true) {
+	    		try {
+	    			posY = scan.nextInt();
+	    			if(0<=posY && posY<9) {
+	    				System.out.println("OK!");
+	    				break;
+	    			} else {
+	    				System.out.println("C'est en dehors du board.");
+	    			}
+	    		} catch(Exception e) {
+	    			System.out.println("Ce n'est pas un nombre");
+	    			scan.nextLine();
+	    		}
+			}
+			System.out.println("Entrez la position en X de la première case.");
+			int posX = 0;
+			while(true) {
+	    		try {
+	    			posX = scan.nextInt();
+	    			if(0<=posX && posX<9) {
+	    				System.out.println("OK!");
+	    				break;
+	    			} else {
+	    				System.out.println("C'est en dehors du board.");
+	    			}
+	    		} catch(Exception e) {
+	    			System.out.println("Ce n'est pas un nombre");
+	    			scan.nextLine();
+	    		}
+			}
+			System.out.println("Entrez l'orientation du domino.");
+			int orientation = 0;
+			while(true) {
+	    		try {
+	    			orientation = scan.nextInt();
+	    			if(0<=orientation && orientation<4) {
+	    				System.out.println("OK!");
+	    				break;
+	    			} else {
+	    				System.out.println("Impossible");
+	    			}
+	    		} catch(Exception e) {
+	    			System.out.println("Ce n'est pas un nombre");
+	    			scan.nextLine();
+	    		}
+			}
+			int posY2 = posY;
+			int posX2 = posX;
+			switch(orientation) {
+			case 0:
+				posY2+=1;
+				break;
+			case 1:
+				posX2+=1;
+				break;
+			case 2:
+				posY2-=1;
+				break;
+			case 3:
+				posX2-=1;
+				break;
+			}
+			if(board.getZones()[posY][posX].equals("vide") && board.getZones()[posY2][posX2].equals("vide")) {
+				if(board.getZones()[posY+1][posX].equals(domino.getZone1()) || board.getZones()[posY+1][posX].equals("chateau")) {
+					board.setDomino(domino, posY, posX, posY2, posX2);
+					isWrong = false;
+				} else if(board.getZones()[posY-1][posX].equals(domino.getZone1()) || board.getZones()[posY-1][posX].equals("chateau")) {
+					board.setDomino(domino, posY, posX, posY2, posX2);
+					isWrong = false;
+				} else if(board.getZones()[posY][posX+1].equals(domino.getZone1()) || board.getZones()[posY][posX+1].equals("chateau")) {
+					board.setDomino(domino, posY, posX, posY2, posX2);
+					isWrong = false;
+				} else if(board.getZones()[posY][posX-1].equals(domino.getZone1()) || board.getZones()[posY][posX-1].equals("chateau")) {
+					board.setDomino(domino, posY, posX, posY2, posX2);
+					isWrong = false;
+				} else if(board.getZones()[posY2+1][posX2].equals(domino.getZone2()) || board.getZones()[posY2+1][posX2].equals("chateau")) {
+					board.setDomino(domino, posY, posX, posY2, posX2);
+					isWrong = false;
+				} else if(board.getZones()[posY2-1][posX2].equals(domino.getZone2()) || board.getZones()[posY2-1][posX2].equals("chateau")) {
+					board.setDomino(domino, posY, posX, posY2, posX2);
+					isWrong = false;
+				} else if(board.getZones()[posY2][posX2+1].equals(domino.getZone2()) || board.getZones()[posY2][posX2+1].equals("chateau")) {
+					board.setDomino(domino, posY, posX, posY2, posX2);
+					isWrong = false;
+				} else if(board.getZones()[posY2][posX2-1].equals(domino.getZone2()) || board.getZones()[posY2][posX2-1].equals("chateau")) {
+					board.setDomino(domino, posY, posX, posY2, posX2);
+					isWrong = false;
+				} else {
+					System.out.println("Vous ne pouvez pas placer le domino ici!");
+				}
+			} else {
+				System.out.println("Case déjà prise!");
+			}
+		}
+    }
+    
     public String getName() {
     	return name;
     }
