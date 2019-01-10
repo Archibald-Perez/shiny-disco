@@ -128,17 +128,10 @@ public class PlayerManager {
     		sequence.add(nextSequence[i]);
     	}
     	nextSequence = new int[nbKing];
-    	for(int i=0; i<nbKing; i++) {
-    		dominoSequence.remove(i);
+    	dominoSequence.clear();
+    	for(int i=0; i<DominoManager.getSelectedDominos().size(); i++) {
+			dominoSequence.add(DominoManager.getSelectedDominos().get(i));
     	}
-    }
-    
-    public static void restartSequenceInit() {
-    	sequence.clear();
-    	for(int i=0; i<nextSequence.length; i++) {
-    		sequence.add(nextSequence[i]);
-    	}
-    	nextSequence = new int[nbKing];
     }
     
     public static List<Player> getPlayers() {
