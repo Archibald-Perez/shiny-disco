@@ -133,6 +133,14 @@ public class PlayerManager {
     	}
     }
     
+    public static void restartSequenceInit() {
+    	sequence.clear();
+    	for(int i=0; i<nextSequence.length; i++) {
+    		sequence.add(nextSequence[i]);
+    	}
+    	nextSequence = new int[nbKing];
+    }
+    
     public static List<Player> getPlayers() {
     	return players;
     }

@@ -40,6 +40,7 @@ public class Main {
 		for(int i=0; i<DominoManager.getSelectedDominos().size(); i++) {
 			PlayerManager.getDominoSequence().add(DominoManager.getSelectedDominos().get(i));
     	}
+		PlayerManager.restartSequenceInit();
 		System.out.println("");
 		while(DominoManager.getNbInDeck() > 0) {
 			DominoManager.selectDominos();
@@ -47,7 +48,6 @@ public class Main {
 				Domino domino = DominoManager.getSelectedDominos().get(i);
 				System.out.println(domino);
 			}
-			PlayerManager.restartSequence();
 			System.out.println("");
 			// Boucle des joueurs
 			for (int i = 0; i< PlayerManager.getNbKing(); i++) {
