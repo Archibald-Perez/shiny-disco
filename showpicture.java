@@ -18,6 +18,8 @@ public class showpicture {
 	static int posx = 0;
 	static int posy = 0;
 	static String orientation = "";
+	
+	//////////LES 4 DOMINOS DE CHAQUE TOUR
 	static ImageIcon iconchoisie = new ImageIcon("45-1.jpg");  // A CHANGER EN FONCTION DU DOMINO
 	static RotatedIcon roticon = new RotatedIcon(iconchoisie, 0.0);
 	static JLabel rotdomino = new JLabel(roticon);
@@ -26,8 +28,16 @@ public class showpicture {
 	static RotatedIcon roticon3 = new RotatedIcon(iconchoisie, 180.0);
 	static JLabel rotdomino3 = new JLabel(roticon3);
 	static RotatedIcon roticon4 = new RotatedIcon(iconchoisie, 270.0);
-	static JLabel rotdomino4 = new JLabel(roticon4);
-	
+	static JLabel rotdomino4 = new JLabel(roticon4);	
+	static ImageIcon iconchoisiebis = new ImageIcon("46-1.jpg");  // A CHANGER EN FONCTION DU DOMINO
+	static RotatedIcon roticonbis = new RotatedIcon(iconchoisiebis, 0.0);
+	static JLabel rotdominobis = new JLabel(roticonbis);	
+	static ImageIcon iconchoisieter = new ImageIcon("47-1.jpg");  // A CHANGER EN FONCTION DU DOMINO
+	static RotatedIcon roticonter = new RotatedIcon(iconchoisieter, 0.0);
+	static JLabel rotdominoter = new JLabel(roticonter);	
+	static ImageIcon iconchoisiequa = new ImageIcon("48-1.jpg");  // A CHANGER EN FONCTION DU DOMINO
+	static RotatedIcon roticonqua = new RotatedIcon(iconchoisiequa, 0.0);
+	static JLabel rotdominoqua = new JLabel(roticonqua);
 	
 	public static void main(String args[]) {
 
@@ -94,6 +104,15 @@ public class showpicture {
 		JLabel label48 = new JLabel(new ImageIcon("48-1.jpg"));
 		JLabel label49 = new JLabel(new ImageIcon("Castle.jpg"));
 		
+		menu(frame, frame1, label, label49, labelmenu);		
+		closeall(frame1);
+		closeall(frame);
+		placement(frame, label);		
+		music(new File("theme.wav"));
+	}
+	
+	///////////MENU PRINCIPAL
+	public static void menu(JFrame frame, JFrame frame1, JLabel label, JLabel label49, JLabel labelmenu) {
 		labelmenu.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				int x = e.getX();
@@ -113,10 +132,6 @@ public class showpicture {
 						NbrJoueurs = 2;
 						frame1.setVisible(false);
 						frame.add(label);
-						label.add(label49);
-						label49.setBounds(282, 299, 132, 66); // A CHANGER EN FONCTION DU CHATEAU
-						label.add(rotdomino);
-						rotdomino.setBounds(865, 61, 132, 66);
 						frame.pack();
 						frame.setVisible(true);
 					}
@@ -124,10 +139,6 @@ public class showpicture {
 						NbrJoueurs = 3;
 						frame1.setVisible(false);
 						frame.add(label);
-						label.add(label49);
-						label49.setBounds(282, 299, 132, 66); // A CHANGER EN FONCTION DU CHATEAU
-						label.add(rotdomino);
-						rotdomino.setBounds(865, 61, 132, 66);
 						frame.pack();
 						frame.setVisible(true);
 					}
@@ -135,10 +146,6 @@ public class showpicture {
 						NbrJoueurs = 4;
 						frame1.setVisible(false);
 						frame.add(label);
-						label.add(label49);
-						label49.setBounds(282, 299, 132, 66); // A CHANGER EN FONCTION DU CHATEAU
-						label.add(rotdomino);
-						rotdomino.setBounds(865, 61, 132, 66);
 						frame.pack();
 						frame.setVisible(true);
 					}
@@ -146,20 +153,58 @@ public class showpicture {
 				if (853 < x && x < 1195 && 367 < y && y < 423) {
 					frame1.setVisible(false);
 					frame.add(label);
-					label.add(label49);
-					label49.setBounds(282, 299, 132, 66); // A CHANGER EN FONCTION DU CHATEAU
-					label.add(rotdomino);
-					rotdomino.setBounds(865, 61, 132, 66);
 					frame.pack();
 					frame.setVisible(true);					
 				}
+				label.add(label49);
+				label49.setBounds(282, 299, 132, 66);
+				label.add(rotdomino);
+				rotdomino.setBounds(865, 61, 132, 66);
+				label.add(rotdominobis);
+				rotdominobis.setBounds(866, 171, 132, 66);
+				label.add(rotdominoter);
+				rotdominoter.setBounds(867, 280, 132, 66);
+				label.add(rotdominoqua);
+				rotdominoqua.setBounds(867, 387, 132, 66);
 			}
 		});
-		
-		closeall(frame1);
-		closeall(frame);
-		
-		////////// MOUSE CLICKING
+	}
+	////////// CLOSE ALL
+	public static void closeall(JFrame frame) {
+		frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				int option = JOptionPane.showConfirmDialog(frame, "Voulez-vous fermer l'application?",
+						"Close Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if (option == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
+			}
+		});
+	}
+	
+	////////// END TURN
+	public static void endturn(int x, int y, int posx, int posy, JFrame frame, String orientation, int fintour) {
+		if (578 < x && x < 645 && 638 < y && y < 673) {
+			int option = JOptionPane.showConfirmDialog(frame, "Voulez-vous valider votre tour?",
+					"Close Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			if (option == JOptionPane.YES_OPTION) {
+				if (fintour == 1) {
+					int a = (posx-55)/66+1;
+					int b = (posy-55)/66+1;
+					System.out.println("Le domino est orienté vers " + orientation + "");
+					System.out.println("Position: [" + a + ";" + b + "]");
+					System.out.println("Fin du tour!");
+					fintour = 0;
+				} else {
+					JOptionPane.showMessageDialog(frame,"Veuillez d'abord placer un domino!");
+				}
+			}
+		}
+	}
+	
+	///////////PLACE DOMINO
+	public static void placement(JFrame frame, JLabel label) {
 		label.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				int x = e.getX();
@@ -269,41 +314,6 @@ public class showpicture {
 				endturn(x,y,posx,posy,frame,orientation,fintour);
 			}
 		});
-		music(new File("theme.wav"));
-	}
-	
-	////////// CLOSE ALL
-	public static void closeall(JFrame frame) {
-		frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-		frame.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				int option = JOptionPane.showConfirmDialog(frame, "Voulez-vous fermer l'application?",
-						"Close Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-				if (option == JOptionPane.YES_OPTION) {
-					System.exit(0);
-				}
-			}
-		});
-	}
-	
-	////////// END TURN
-	public static void endturn(int x, int y, int posx, int posy, JFrame frame, String orientation, int fintour) {
-		if (578 < x && x < 645 && 638 < y && y < 673) {
-			int option = JOptionPane.showConfirmDialog(frame, "Voulez-vous valider votre tour?",
-					"Close Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-			if (option == JOptionPane.YES_OPTION) {
-				if (fintour == 1) {
-					int a = (posx-55)/66+1;
-					int b = (posy-55)/66+1;
-					System.out.println("Le domino est orienté vers " + orientation + "");
-					System.out.println("Position: [" + a + ";" + b + "]");
-					System.out.println("Fin du tour!");
-					fintour = 0;
-				} else {
-					JOptionPane.showMessageDialog(frame,"Veuillez d'abord placer un domino!");
-				}
-			}
-		}
 	}
 	
 	/////////// BACKGROUND MUSIC
