@@ -11,6 +11,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
+import java.util.*;
 
 public class showpicture {
 	static int NbrJoueurs = 0;
@@ -38,6 +39,7 @@ public class showpicture {
 	static ImageIcon iconchoisiequa = new ImageIcon("48-1.jpg");  // A CHANGER EN FONCTION DU DOMINO
 	static RotatedIcon roticonqua = new RotatedIcon(iconchoisiequa, 0.0);
 	static JLabel rotdominoqua = new JLabel(roticonqua);
+	static List<JLabel> dominoLabels = new ArrayList<>();
 	
 	public static void main(String args[]) {
 
@@ -54,54 +56,9 @@ public class showpicture {
 		frame.setLayout(new FlowLayout());
 		ImageIcon board = new ImageIcon("Board2.jpg");
 		JLabel label = new JLabel(board);
-		JLabel label1 = new JLabel(new ImageIcon("1-1.jpg"));
-		JLabel label2 = new JLabel(new ImageIcon("2-1.jpg"));
-		JLabel label3 = new JLabel(new ImageIcon("3-1.jpg"));
-		JLabel label4 = new JLabel(new ImageIcon("4-1.jpg"));
-		JLabel label5 = new JLabel(new ImageIcon("5-1.jpg"));
-		JLabel label6 = new JLabel(new ImageIcon("6-1.jpg"));
-		JLabel label7 = new JLabel(new ImageIcon("7-1.jpg"));
-		JLabel label8 = new JLabel(new ImageIcon("8-1.jpg"));
-		JLabel label9 = new JLabel(new ImageIcon("9-1.jpg"));
-		JLabel label10 = new JLabel(new ImageIcon("10-1.jpg"));
-		JLabel label11 = new JLabel(new ImageIcon("11-1.jpg"));
-		JLabel label12 = new JLabel(new ImageIcon("12-1.jpg"));
-		JLabel label13 = new JLabel(new ImageIcon("13-1.jpg"));
-		JLabel label14 = new JLabel(new ImageIcon("14-1.jpg"));
-		JLabel label15 = new JLabel(new ImageIcon("15-1.jpg"));
-		JLabel label16 = new JLabel(new ImageIcon("16-1.jpg"));
-		JLabel label17 = new JLabel(new ImageIcon("17-1.jpg"));
-		JLabel label18 = new JLabel(new ImageIcon("18-1.jpg"));
-		JLabel label19 = new JLabel(new ImageIcon("19-1.jpg"));
-		JLabel label20 = new JLabel(new ImageIcon("20-1.jpg"));
-		JLabel label21 = new JLabel(new ImageIcon("21-1.jpg"));
-		JLabel label22 = new JLabel(new ImageIcon("22-1.jpg"));
-		JLabel label23 = new JLabel(new ImageIcon("23-1.jpg"));
-		JLabel label24 = new JLabel(new ImageIcon("24-1.jpg"));
-		JLabel label25 = new JLabel(new ImageIcon("25-1.jpg"));
-		JLabel label26 = new JLabel(new ImageIcon("26-1.jpg"));
-		JLabel label27 = new JLabel(new ImageIcon("27-1.jpg"));
-		JLabel label28 = new JLabel(new ImageIcon("28-1.jpg"));
-		JLabel label29 = new JLabel(new ImageIcon("29-1.jpg"));
-		JLabel label30 = new JLabel(new ImageIcon("30-1.jpg"));
-		JLabel label31 = new JLabel(new ImageIcon("31-1.jpg"));
-		JLabel label32 = new JLabel(new ImageIcon("32-1.jpg"));
-		JLabel label33 = new JLabel(new ImageIcon("33-1.jpg"));
-		JLabel label34 = new JLabel(new ImageIcon("34-1.jpg"));
-		JLabel label35 = new JLabel(new ImageIcon("35-1.jpg"));
-		JLabel label36 = new JLabel(new ImageIcon("36-1.jpg"));
-		JLabel label37 = new JLabel(new ImageIcon("37-1.jpg"));
-		JLabel label38 = new JLabel(new ImageIcon("38-1.jpg"));
-		JLabel label39 = new JLabel(new ImageIcon("39-1.jpg"));
-		JLabel label40 = new JLabel(new ImageIcon("40-1.jpg"));
-		JLabel label41 = new JLabel(new ImageIcon("41-1.jpg"));
-		JLabel label42 = new JLabel(new ImageIcon("42-1.jpg"));
-		JLabel label43 = new JLabel(new ImageIcon("43-1.jpg"));
-		JLabel label44 = new JLabel(new ImageIcon("44-1.jpg"));
-		JLabel label45 = new JLabel(new ImageIcon("45-1.jpg"));
-		JLabel label46 = new JLabel(new ImageIcon("46-1.jpg"));
-		JLabel label47 = new JLabel(new ImageIcon("47-1.jpg"));
-		JLabel label48 = new JLabel(new ImageIcon("48-1.jpg"));
+		for(int i = 1; i < 49; i++) {
+			dominoLabels.add(new JLabel(new ImageIcon(i+"-1.jpg")));
+		}
 		JLabel label49 = new JLabel(new ImageIcon("Castle.jpg"));
 		
 		menu(frame, frame1, label, label49, labelmenu);		
@@ -205,6 +162,15 @@ public class showpicture {
 	
 	///////////PLACE DOMINO
 	public static void placement(JFrame frame, JLabel label) {
+		ImageIcon iconchoisie = new ImageIcon("45-1.jpg");  // A CHANGER EN FONCTION DU DOMINO
+		RotatedIcon roticon = new RotatedIcon(iconchoisie, 0.0);
+		JLabel rotdomino = new JLabel(roticon);
+		RotatedIcon roticon2 = new RotatedIcon(iconchoisie, 90.0);
+		JLabel rotdomino2 = new JLabel(roticon2);
+		RotatedIcon roticon3 = new RotatedIcon(iconchoisie, 180.0);
+		JLabel rotdomino3 = new JLabel(roticon3);
+		RotatedIcon roticon4 = new RotatedIcon(iconchoisie, 270.0);
+		JLabel rotdomino4 = new JLabel(roticon4);	
 		label.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				int x = e.getX();
