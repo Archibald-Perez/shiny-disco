@@ -63,11 +63,15 @@ public class Main {
 				// Le joueur choisi le domino suivant
 				System.out.println(turnPlayer.getName()+" choisi un domino");
 				PlayerManager.getDominoSequence().add(turnPlayer.selectDomino());
+				System.out.println(turnBoard.score());
 			}
 			System.out.println("");
 			PlayerManager.restartSequence();
 		}
-		// Calcule des scores
+		for(int i=0; i<boards.size(); i++) {
+			int score = boards.get(i).score();
+			System.out.println(score);
+		}
 		// Affiche le vainqueur
 		// Retourne au menu
 	}

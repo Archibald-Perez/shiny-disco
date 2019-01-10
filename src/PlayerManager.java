@@ -128,7 +128,11 @@ public class PlayerManager {
     		sequence.add(nextSequence[i]);
     	}
     	nextSequence = new int[nbKing];
+    	for(int i=0; i<nbKing; i++) {
+    		dominoSequence.remove(i);
+    	}
     }
+    
     public static List<Player> getPlayers() {
     	return players;
     }
