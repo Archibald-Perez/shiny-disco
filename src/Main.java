@@ -6,10 +6,13 @@ import java.io.*;
  *
  */
 public class Main {
+	public static boolean GUI = false;
 	public static List<Board> boards = new ArrayList<>();
 	
 	public static void main(String[] args) throws FileNotFoundException{
 		// Menu
+			ShowPicture.creation();
+			ShowPicture.menu();
 			PlayerManager.chooseNbPlayers();
 			PlayerManager.createPlayers();
 			for (int i=0;i<PlayerManager.getPlayers().size();i++) {
@@ -56,6 +59,7 @@ public class Main {
 				System.out.println(turnBoard);
 				System.out.println("Le joueur "+turnPlayer.getName()+" place le domino : "+turnDomino);
 				// Le joueur place son domino
+				ShowPicture.placement(turnDomino);
 				turnPlayer.setDomino(turnBoard, turnDomino);
 				System.out.println(turnBoard);
 				// Le joueur choisi le domino suivant

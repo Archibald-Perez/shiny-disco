@@ -13,23 +13,26 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.util.*;
 
-public class showpicture {
-	static int NbrJoueurs = 0;
+public class ShowPicture {
+	static byte NbrJoueurs = 0;
 	static int fintour = 0;
 	static int posx = 0;
 	static int posy = 0;
 	static String orientation = "";
 	
+	static JFrame frame1 = new JFrame();
+	static JFrame frame = new JFrame();
+	static ImageIcon menu = new ImageIcon("Menu1.jpg");
+	static JLabel labelmenu = new JLabel(menu);
+	static ImageIcon board = new ImageIcon("Board2.jpg");
+	static JLabel label = new JLabel(board);
+	static JLabel label49 = new JLabel(new ImageIcon("Castle.jpg"));
+	
+	
 	//////////LES 4 DOMINOS DE CHAQUE TOUR
 	static ImageIcon iconchoisie = new ImageIcon("45-1.jpg");  // A CHANGER EN FONCTION DU DOMINO
 	static RotatedIcon roticon = new RotatedIcon(iconchoisie, 0.0);
 	static JLabel rotdomino = new JLabel(roticon);
-	static RotatedIcon roticon2 = new RotatedIcon(iconchoisie, 90.0);
-	static JLabel rotdomino2 = new JLabel(roticon2);
-	static RotatedIcon roticon3 = new RotatedIcon(iconchoisie, 180.0);
-	static JLabel rotdomino3 = new JLabel(roticon3);
-	static RotatedIcon roticon4 = new RotatedIcon(iconchoisie, 270.0);
-	static JLabel rotdomino4 = new JLabel(roticon4);	
 	static ImageIcon iconchoisiebis = new ImageIcon("46-1.jpg");  // A CHANGER EN FONCTION DU DOMINO
 	static RotatedIcon roticonbis = new RotatedIcon(iconchoisiebis, 0.0);
 	static JLabel rotdominobis = new JLabel(roticonbis);	
@@ -39,37 +42,31 @@ public class showpicture {
 	static ImageIcon iconchoisiequa = new ImageIcon("48-1.jpg");  // A CHANGER EN FONCTION DU DOMINO
 	static RotatedIcon roticonqua = new RotatedIcon(iconchoisiequa, 0.0);
 	static JLabel rotdominoqua = new JLabel(roticonqua);
-	static List<JLabel> dominoLabels = new ArrayList<>();
+	static List<ImageIcon> dominoIcons = new ArrayList<>();
 	
 	public static void main(String args[]) {
-
-		/////////// CREATE IMAGES
-		JFrame frame1 = new JFrame();
-		frame1.setLayout(new FlowLayout());
-		ImageIcon menu = new ImageIcon("Menu1.jpg");
-		JLabel labelmenu = new JLabel(menu);
-		frame1.add(labelmenu);
-		frame1.pack();
-		frame1.setVisible(true);
-		
-		JFrame frame = new JFrame();
-		frame.setLayout(new FlowLayout());
-		ImageIcon board = new ImageIcon("Board2.jpg");
-		JLabel label = new JLabel(board);
-		for(int i = 1; i < 49; i++) {
-			dominoLabels.add(new JLabel(new ImageIcon(i+"-1.jpg")));
-		}
-		JLabel label49 = new JLabel(new ImageIcon("Castle.jpg"));
-		
-		menu(frame, frame1, label, label49, labelmenu);		
+		creation();
+		menu();		
 		closeall(frame1);
 		closeall(frame);
-		placement(frame, label);		
+		Domino domino = new Domino(43,"z","z",12,12);
+		placement(domino);
 		music(new File("theme.wav"));
 	}
 	
 	///////////MENU PRINCIPAL
-	public static void menu(JFrame frame, JFrame frame1, JLabel label, JLabel label49, JLabel labelmenu) {
+	public static void creation() {
+		frame1.setLayout(new FlowLayout());
+		frame1.add(labelmenu);
+		frame1.pack();
+		frame1.setVisible(true);
+		frame.setLayout(new FlowLayout());
+		for(int i = 1; i < 49; i++) {
+			dominoIcons.add(new ImageIcon(i+"-1.jpg"));
+		}
+	}
+	
+	public static void menu() {
 		labelmenu.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				int x = e.getX();
@@ -147,6 +144,7 @@ public class showpicture {
 					"Close Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			if (option == JOptionPane.YES_OPTION) {
 				if (fintour == 1) {
+					// Vérification à faire.
 					int a = (posx-55)/66+1;
 					int b = (posy-55)/66+1;
 					System.out.println("Le domino est orienté vers " + orientation + "");
@@ -161,8 +159,8 @@ public class showpicture {
 	}
 	
 	///////////PLACE DOMINO
-	public static void placement(JFrame frame, JLabel label) {
-		ImageIcon iconchoisie = new ImageIcon("45-1.jpg");  // A CHANGER EN FONCTION DU DOMINO
+	public static void placement(Domino domino) {
+		ImageIcon iconchoisie = dominoIcons.get(domino.getNumber());  // A CHANGER EN FONCTION DU DOMINO
 		RotatedIcon roticon = new RotatedIcon(iconchoisie, 0.0);
 		JLabel rotdomino = new JLabel(roticon);
 		RotatedIcon roticon2 = new RotatedIcon(iconchoisie, 90.0);

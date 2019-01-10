@@ -44,24 +44,28 @@ public class PlayerManager {
     }
 
     public static void chooseNbPlayers(){ //la fonction qui récupère le nombre de joueur
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Entrez le nombre de joueurs");
-        Byte n = null;
-        while (true){
-            try {
-                n=scan.nextByte();
-                if (n > 4 || n<=0) {
-                    System.out.println("Nombre de joueurs incorrect.");
-                    continue;
-                } else {
-                    break;
-                }
-            }
-            catch(Exception e) {
-                System.out.println("Nombre incorrect.");
-                scan.nextLine();
-            }
-        }
+    	Byte n = null;
+    	if (Main.GUI) {
+    		n = ShowPicture.NbrJoueurs;
+    	} else {
+	        Scanner scan = new Scanner(System.in);
+	        System.out.println("Entrez le nombre de joueurs");
+	        while (true){
+	            try {
+	                n=scan.nextByte();
+	                if (n > 4 || n<=0) {
+	                    System.out.println("Nombre de joueurs incorrect.");
+	                    continue;
+	                } else {
+	                    break;
+	                }
+	            }
+	            catch(Exception e) {
+	                System.out.println("Nombre incorrect.");
+	                scan.nextLine();
+	            }
+	        }
+    	}
         if (n==3) {
         	nbKing = 3;
         }
