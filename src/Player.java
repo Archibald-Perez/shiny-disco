@@ -177,7 +177,6 @@ public class Player {
 			placed = true;
 		}
 		placed = true;
-		System.out.println("LOOKKKKK AT MMMMEEEE "+res);
 		return res;
     }
     public String getName() {

@@ -4,7 +4,6 @@ import java.awt.Graphics2D;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -249,7 +248,6 @@ public class ShowPicture {
 		JLabel rotdomino4 = new JLabel(roticon4);	
 		mouse = new MouseAdapter(){
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("LE DOMINO: "+domino.getNumber());
 				int x = e.getX();
 				int y = e.getY();
 				int button = e.getButton();
