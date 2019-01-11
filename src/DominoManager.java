@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.*;
 
+import javax.swing.JOptionPane;
+
 public class DominoManager {
 	private static List<Domino> dominos = new ArrayList<>();
 	private static List<Domino> selectedDominos = new ArrayList<>();
@@ -60,7 +62,11 @@ public class DominoManager {
 		}
 		for (int i=0;i<DominoManager.getSelectedDominos().size();i++) {
 			Domino domino = DominoManager.getSelectedDominos().get(i);
-			System.out.println(domino);
+			if (Main.GUI) {
+				JOptionPane.showMessageDialog(ShowPicture.frame1, "Dominos sélectionnés:" + domino);
+			} else {
+				System.out.println(domino);
+			}
 		}
 		ShowPicture.showDominos();
 	}
