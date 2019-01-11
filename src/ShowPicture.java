@@ -117,6 +117,9 @@ public class ShowPicture {
 		});
 	}
 	public static void showDominos() {
+		frame.remove(label49);
+		frame.revalidate();
+		frame.repaint();
 		for(int i = 0; i <PlayerManager.getNbKing(); i++) {
 			ImageIcon iconchoisie = dominoIcons.get(DominoManager.getSelectedDominosNumbers().get(i)-1);
 			RotatedIcon roticon = new RotatedIcon(iconchoisie, 0.0);
