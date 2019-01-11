@@ -72,10 +72,17 @@ public class Main {
 			PlayerManager.restartSequence();
 			
 		}
+		int win = 0;
+		int maxScore = 0;
 		for(int i=0; i<boards.size(); i++) {
 			int score = boards.get(i).score();
-			System.out.println(score);
+			if(score>maxScore) {
+				win = i;
+				maxScore = score;
+			}
+			System.out.println("Le joueur "+PlayerManager.getPlayers().get(i).getName()+"a obtenu "+score);
 		}
+		System.out.println("Le joueur "+PlayerManager.getPlayers().get(win).getName()+"a gagné!");
 		// Affiche le vainqueur
 		// Retourne au menu
 	}
