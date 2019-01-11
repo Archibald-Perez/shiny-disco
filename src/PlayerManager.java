@@ -46,7 +46,7 @@ public class PlayerManager {
     public static void chooseNbPlayers(){ //la fonction qui récupère le nombre de joueur
     	Byte n = null;
     	if (Main.GUI) {
-    		n = ShowPicture.NbrJoueurs;
+    		n = ShowPicture.nbPlayer;
     	} else {
 	        Scanner scan = new Scanner(System.in);
 	        System.out.println("Entrez le nombre de joueurs");

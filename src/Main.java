@@ -6,14 +6,18 @@ import java.io.*;
  *
  */
 public class Main {
-	public static boolean GUI = false;
+	public static boolean GUI = true;
 	public static List<Board> boards = new ArrayList<>();
 	
 	public static void main(String[] args) throws FileNotFoundException{
 		// Menu
 			ShowPicture.creation();
 			ShowPicture.menu();
-			PlayerManager.chooseNbPlayers();
+			// Wait for player select
+			do {
+				PlayerManager.chooseNbPlayers();
+				System.out.print("");
+			} while(PlayerManager.getNbPlayer() == 0);
 			PlayerManager.createPlayers();
 			for (int i=0;i<PlayerManager.getPlayers().size();i++) {
 				Player player = PlayerManager.getPlayers().get(i);
@@ -28,6 +32,7 @@ public class Main {
 		}
 		// Selectionne les premiers dominos
 		DominoManager.selectDominos();
+		ShowPicture.showDominos();
 		for (int i=0;i<DominoManager.getSelectedDominos().size();i++) {
 			Domino domino = DominoManager.getSelectedDominos().get(i);
 			System.out.println(domino);

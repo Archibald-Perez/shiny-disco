@@ -14,7 +14,7 @@ import javax.swing.*;
 import java.util.*;
 
 public class ShowPicture {
-	static byte NbrJoueurs = 0;
+	static byte nbPlayer = 0;
 	static int fintour = 0;
 	static int posx = 0;
 	static int posy = 0;
@@ -54,7 +54,6 @@ public class ShowPicture {
 		music(new File("theme.wav"));
 	}
 	
-	///////////MENU PRINCIPAL
 	public static void creation() {
 		frame1.setLayout(new FlowLayout());
 		frame1.add(labelmenu);
@@ -66,7 +65,8 @@ public class ShowPicture {
 		}
 	}
 	
-	public static void menu() {
+	///////////MENU PRINCIPAL
+	public static boolean menu() {
 		labelmenu.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				int x = e.getX();
@@ -83,21 +83,21 @@ public class ShowPicture {
 						JOptionPane.showMessageDialog(frame, "Jouer tout seul, c'est triste! Essayez avec des amis!");
 					}
 					if (965 < x && x < 1005) {
-						NbrJoueurs = 2;
+						nbPlayer = 2;
 						frame1.setVisible(false);
 						frame.add(label);
 						frame.pack();
 						frame.setVisible(true);
 					}
 					if (1027 < x && x < 1075) {
-						NbrJoueurs = 3;
+						nbPlayer = 3;
 						frame1.setVisible(false);
 						frame.add(label);
 						frame.pack();
 						frame.setVisible(true);
 					}
 					if (1092 < x && x < 1140) {
-						NbrJoueurs = 4;
+						nbPlayer = 4;
 						frame1.setVisible(false);
 						frame.add(label);
 						frame.pack();
@@ -110,18 +110,9 @@ public class ShowPicture {
 					frame.pack();
 					frame.setVisible(true);					
 				}
-				label.add(label49);
-				label49.setBounds(282, 299, 132, 66);
-				label.add(rotdomino);
-				rotdomino.setBounds(865, 61, 132, 66);
-				label.add(rotdominobis);
-				rotdominobis.setBounds(866, 171, 132, 66);
-				label.add(rotdominoter);
-				rotdominoter.setBounds(867, 280, 132, 66);
-				label.add(rotdominoqua);
-				rotdominoqua.setBounds(867, 387, 132, 66);
 			}
 		});
+		return true;
 	}
 	////////// CLOSE ALL
 	public static void closeall(JFrame frame) {
@@ -136,7 +127,18 @@ public class ShowPicture {
 			}
 		});
 	}
-	
+	public static void showDominos() {
+		label.add(label49);
+		label49.setBounds(282, 299, 132, 66);
+		label.add(rotdomino);
+		rotdomino.setBounds(865, 61, 132, 66);
+		label.add(rotdominobis);
+		rotdominobis.setBounds(866, 171, 132, 66);
+		label.add(rotdominoter);
+		rotdominoter.setBounds(867, 280, 132, 66);
+		label.add(rotdominoqua);
+		rotdominoqua.setBounds(867, 387, 132, 66);
+	}
 	////////// END TURN
 	public static void endturn(int x, int y, int posx, int posy, JFrame frame, String orientation, int fintour) {
 		if (578 < x && x < 645 && 638 < y && y < 673) {
