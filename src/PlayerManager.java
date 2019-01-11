@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.util.*;
 
+import javax.swing.JOptionPane;
+
 public class PlayerManager {
     private static List<Player> players = new ArrayList<>();
     private static Byte nbKing = 4;
@@ -74,35 +76,68 @@ public class PlayerManager {
     }
 
     public static void createPlayers(){
-        Scanner scan = new Scanner(System.in);
-        for (Byte i = 1; i< nbPlayer+1; i++){
-            String namePlayer = "Player" + i;
-            System.out.println(namePlayer);
-            System.out.println("Le joueur est-il une IA ?");
-            Boolean choixAI = choix();
-            if (!choixAI) {
-                System.out.println("Veuillez saisir votre nom");
-                namePlayer = scan.nextLine();
-            }
-            Color color;
-            switch (i){
-                case 1 :
-                    color = Color.pink;
-                    break;
-                case 2 :
-                    color = Color.cyan;
-                    break;
-                case 3 :
-                    color = Color.magenta;
-                    break;
-                default:
-                    color = Color.green;
-                    break;
-            }
-            Player player = new Player(namePlayer, choixAI, color );
-            players.add(player);
-        }
-    }
+		if (Main.GUI) {
+			for (Byte i = 1; i < nbPlayer + 1; i++) {
+				String namePlayer = "Player" + i;
+				System.out.println(namePlayer);
+				int option = JOptionPane.showConfirmDialog(ShowPicture.frame1, "Le joueur" + namePlayer + "est-il une IA?",
+						"Close Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				Boolean choixAI = false;
+				if (option == JOptionPane.YES_OPTION) {
+					choixAI = true;
+				} if (option == JOptionPane.NO_OPTION) {
+					choixAI = false;
+					namePlayer = JOptionPane.showInputDialog(ShowPicture.frame1, "Quel est le nom du Joueur?");
+				}
+				Color color;
+				switch (i) {
+				case 1:
+					color = Color.pink;
+					break;
+				case 2:
+					color = Color.cyan;
+					break;
+				case 3:
+					color = Color.magenta;
+					break;
+				default:
+					color = Color.green;
+					break;
+				}
+				Player player = new Player(namePlayer, choixAI, color);
+				players.add(player);
+			}
+		} else {
+			Scanner scan = new Scanner(System.in);
+			for (Byte i = 1; i < nbPlayer + 1; i++) {
+				String namePlayer = "Player" + i;
+				System.out.println(namePlayer);
+				System.out.println("Le joueur est-il une IA ?");
+				Boolean choixAI = choix();
+				if (!choixAI) {
+					System.out.println("Veuillez saisir votre nom");
+					namePlayer = scan.nextLine();
+				}
+				Color color;
+				switch (i) {
+				case 1:
+					color = Color.pink;
+					break;
+				case 2:
+					color = Color.cyan;
+					break;
+				case 3:
+					color = Color.magenta;
+					break;
+				default:
+					color = Color.green;
+					break;
+				}
+				Player player = new Player(namePlayer, choixAI, color);
+				players.add(player);
+			}
+		}
+	}
 
     public static void initialSequence(){
         Random rand = new Random();
