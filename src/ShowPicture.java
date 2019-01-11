@@ -33,12 +33,7 @@ public class ShowPicture {
 	static List<ImageIcon> dominoIcons = new ArrayList<>();
 	
 	public static void main(String args[]) {
-		creation();
-		menu();		
-		closeall(frame1);
-		closeall(frame);
-		Domino domino = new Domino(43,"z","z",12,12);
-		music(new File("theme.wav"));
+		//music(new File("theme.wav"));
 	}
 	
 	public static void creation() {
@@ -117,11 +112,9 @@ public class ShowPicture {
 		});
 	}
 	public static void showDominos() {
-		frame.remove(label49);
-		frame.revalidate();
-		frame.repaint();
+		reload();
 		for(int i = 0; i <PlayerManager.getNbKing(); i++) {
-			ImageIcon iconchoisie = dominoIcons.get(DominoManager.getSelectedDominosNumbers().get(i)-1);
+			ImageIcon iconchoisie = dominoIcons.get(DominoManager.getSelectedDominos().get(i).getNumber()-1);
 			RotatedIcon roticon = new RotatedIcon(iconchoisie, 0.0);
 			JLabel rotdomino = new JLabel(roticon);
 			label.add(rotdomino);
@@ -136,8 +129,8 @@ public class ShowPicture {
 			if (option == JOptionPane.YES_OPTION) {
 				if (fintour == 1) {
 					// Vérification à faire.
-					int a = (posx-55)/66+1;
-					int b = (posy-55)/66+1;
+					int a = (posx-55)/66;
+					int b = (posy-55)/66;
 					int orient = 0;
 					if(orientation.equals("gauche")) {
 						orient = 1;
@@ -153,16 +146,21 @@ public class ShowPicture {
 					//System.out.println("Position: [" + a + ";" + b + "]");
 					//System.out.println("Fin du tour!");
 					fintour = 0;
+					showDominos();
 				} else {
 					JOptionPane.showMessageDialog(frame,"Veuillez d'abord placer un domino!");
 				}
+				return;
 			}
+			return;
 		}
+		return;
 	}
 	
 	///////////PLACE DOMINO
 	public static void placement(Player player, Board board, Domino domino) {
-		ImageIcon iconchoisie = dominoIcons.get(domino.getNumber()-1);  // A CHANGER EN FONCTION DU DOMINO
+		System.out.println("LE DOMINO: "+domino.getNumber());
+		ImageIcon iconchoisie = dominoIcons.get(domino.getNumber()-1);
 		RotatedIcon roticon = new RotatedIcon(iconchoisie, 0.0);
 		JLabel rotdomino = new JLabel(roticon);
 		RotatedIcon roticon2 = new RotatedIcon(iconchoisie, 90.0);
@@ -278,10 +276,19 @@ public class ShowPicture {
 					}
 				}
 				endturn(player,board,domino,x,y);
+				return;
 			}
 		});
+		return;
 	}
 	
+	public static void reload() {
+		label.removeAll();
+		label.revalidate();
+		label.repaint();
+		label.add(label49);
+		label49.setBounds(282, 299, 132, 66);
+	}
 	/////////// BACKGROUND MUSIC
 	public static void music(File file) {
 		{

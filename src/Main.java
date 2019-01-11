@@ -12,6 +12,8 @@ public class Main {
 	public static void main(String[] args) throws FileNotFoundException{
 		// Menu
 			ShowPicture.creation();
+			ShowPicture.closeall(ShowPicture.frame1);
+			ShowPicture.closeall(ShowPicture.frame);
 			ShowPicture.menu();
 			// Wait for player select
 			do {

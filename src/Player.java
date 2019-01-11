@@ -110,13 +110,13 @@ public class Player {
 			posY2+=1;
 			break;
 		case 1:
-			posX2+=1;
+			posX2-=1;
 			break;
 		case 2:
 			posY2-=1;
 			break;
 		case 3:
-			posX2-=1;
+			posX2+=1;
 			break;
 		}
 		if(board.getZones()[posY][posX].equals("vide") && board.getZones()[posY2][posX2].equals("vide")) {
