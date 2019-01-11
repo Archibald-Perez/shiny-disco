@@ -6,6 +6,7 @@ public class Player {
     private Boolean isAI;
     private Color color;
     private AI ai = null;
+    static boolean placed = false;
 
 
     public Player(String name, Boolean isAI, Color color){
@@ -46,9 +47,10 @@ public class Player {
     }
 
     public void setDomino(Board board, Domino domino) {
-		Scanner scan = new Scanner(System.in);
-		boolean isWrong = true;
-		while(isWrong) {
+    	if(Main.GUI) {
+    		ShowPicture.placement(this, board, domino);
+    	} else {
+			Scanner scan = new Scanner(System.in);
 			System.out.println("Entrez la position en Y de la première case.");
 			int posY = 0;
 			while(true) {
@@ -97,10 +99,10 @@ public class Player {
 	    			scan.nextLine();
 	    		}
 			}
-			isWrong = !verifyDomino(board,domino,posX,posY,orientation);
-		}
+			verifyDomino(board,domino,posX,posY,orientation);
+    	}
     }
-    public boolean verifyDomino(Board board, Domino domino, int posX, int posY, int orientation) {
+    public void verifyDomino(Board board, Domino domino, int posX, int posY, int orientation) {
     	int posY2 = posY;
 		int posX2 = posX;
 		switch(orientation) {
@@ -135,14 +137,14 @@ public class Player {
 			} else if(board.getZones()[posY2][posX2-1].equals(domino.getZone2()) || board.getZones()[posY2][posX2-1].equals("chateau")) {
 				board.setDomino(domino, posY, posX, posY2, posX2);
 			} else {
-				System.out.println("Vous ne pouvez pas placer le domino ici!");
-				return false;
+				System.out.println("Vous ne pouvez pas placer le domino ici! Domino défaussé");
+				placed = true;
 			}
 		} else {
-			System.out.println("Case déjà prise!");
-			return false;
+			System.out.println("Case déjà prise! Domino défaussé");
+			placed = true;
 		}
-		return true;
+		placed = true;
     }
     public String getName() {
     	return name;

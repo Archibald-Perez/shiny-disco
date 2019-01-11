@@ -58,6 +58,11 @@ public class DominoManager {
 				selectedDominosNumbers.add(index, testDomino.getNumber());
 			}
 		}
+		for (int i=0;i<DominoManager.getSelectedDominos().size();i++) {
+			Domino domino = DominoManager.getSelectedDominos().get(i);
+			System.out.println(domino);
+		}
+		ShowPicture.showDominos();
 	}
 	public static List<Domino> getDominos() {
     	return dominos;

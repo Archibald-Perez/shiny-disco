@@ -38,7 +38,6 @@ public class ShowPicture {
 		closeall(frame1);
 		closeall(frame);
 		Domino domino = new Domino(43,"z","z",12,12);
-		placement(domino);
 		music(new File("theme.wav"));
 	}
 	
@@ -51,6 +50,8 @@ public class ShowPicture {
 		for(int i = 1; i < 49; i++) {
 			dominoIcons.add(new ImageIcon(i+"-1.jpg"));
 		}
+		label.add(label49);
+		label49.setBounds(282, 299, 132, 66);
 	}
 	
 	///////////MENU PRINCIPAL
@@ -116,18 +117,16 @@ public class ShowPicture {
 		});
 	}
 	public static void showDominos() {
-		label.add(label49);
-		label49.setBounds(282, 299, 132, 66);
-		for(int i = 0; i <DominoManager.getSelectedDominosNumbers().size(); i++) {
-		ImageIcon iconchoisie = dominoIcons.get(DominoManager.getSelectedDominosNumbers().get(i));
-		RotatedIcon roticon = new RotatedIcon(iconchoisie, 0.0);
-		JLabel rotdomino = new JLabel(roticon);
-		label.add(rotdomino);
-		rotdomino.setBounds(865, 61+110*i, 132, 66);
+		for(int i = 0; i <PlayerManager.getNbKing(); i++) {
+			ImageIcon iconchoisie = dominoIcons.get(DominoManager.getSelectedDominosNumbers().get(i)-1);
+			RotatedIcon roticon = new RotatedIcon(iconchoisie, 0.0);
+			JLabel rotdomino = new JLabel(roticon);
+			label.add(rotdomino);
+			rotdomino.setBounds(865, 61+110*i, 132, 66);
 		}
 	}
 	////////// END TURN
-	public static void endturn(int x, int y, int posx, int posy, JFrame frame, String orientation, int fintour) {
+	public static void endturn(Player player, Board board, Domino domino, int x, int y) {
 		if (578 < x && x < 645 && 638 < y && y < 673) {
 			int option = JOptionPane.showConfirmDialog(frame, "Voulez-vous valider votre tour?",
 					"Close Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -136,9 +135,20 @@ public class ShowPicture {
 					// Vérification à faire.
 					int a = (posx-55)/66+1;
 					int b = (posy-55)/66+1;
-					System.out.println("Le domino est orienté vers " + orientation + "");
-					System.out.println("Position: [" + a + ";" + b + "]");
-					System.out.println("Fin du tour!");
+					int orient = 0;
+					if(orientation.equals("gauche")) {
+						orient = 1;
+					}
+					if(orientation.equals("haut")) {
+						orient = 2;
+					}
+					if(orientation.equals("droite")) {
+						orient = 3;
+					}
+					player.verifyDomino(board, domino, a, b, orient);
+					//System.out.println("Le domino est orienté vers " + orientation + "");
+					//System.out.println("Position: [" + a + ";" + b + "]");
+					//System.out.println("Fin du tour!");
 					fintour = 0;
 				} else {
 					JOptionPane.showMessageDialog(frame,"Veuillez d'abord placer un domino!");
@@ -148,8 +158,8 @@ public class ShowPicture {
 	}
 	
 	///////////PLACE DOMINO
-	public static void placement(Domino domino) {
-		ImageIcon iconchoisie = dominoIcons.get(domino.getNumber());  // A CHANGER EN FONCTION DU DOMINO
+	public static void placement(Player player, Board board, Domino domino) {
+		ImageIcon iconchoisie = dominoIcons.get(domino.getNumber()-1);  // A CHANGER EN FONCTION DU DOMINO
 		RotatedIcon roticon = new RotatedIcon(iconchoisie, 0.0);
 		JLabel rotdomino = new JLabel(roticon);
 		RotatedIcon roticon2 = new RotatedIcon(iconchoisie, 90.0);
@@ -264,7 +274,7 @@ public class ShowPicture {
 						}
 					}
 				}
-				endturn(x,y,posx,posy,frame,orientation,fintour);
+				endturn(player,board,domino,x,y);
 			}
 		});
 	}
