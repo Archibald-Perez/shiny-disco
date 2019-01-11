@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class Player {
     private String name;
     private Boolean isAI;
@@ -23,6 +25,25 @@ public class Player {
     	if(isAI) {
     		return ai.selectDomino();
     	} else {
+    		if (Main.GUI) {
+    			while(true) {
+    	    		try {
+    	    			int num = Integer.parseInt( JOptionPane.showInputDialog(ShowPicture.frame1, "Entrez le numéro du domino choisi:"));
+    	    			if(DominoManager.getSelectedDominosNumbers().contains(num)) {
+    	    				int index = DominoManager.getSelectedDominosNumbers().indexOf(num);
+    	    				Domino domino = DominoManager.getSelectedDominos().get(index);
+    	    				PlayerManager.getNextSequence()[DominoManager.getSelectedDominosNumbers().indexOf(domino.getNumber())] = PlayerManager.getPlayers().indexOf(this);
+    	    				DominoManager.getSelectedDominosNumbers().set(index, null);
+    	    				JOptionPane.showMessageDialog(ShowPicture.frame1, "Vous avez choisi le domino "+domino);
+    	    				return domino;
+    	    			} else {
+    	    				JOptionPane.showMessageDialog(ShowPicture.frame1, "Vous ne pouvez pas choisir ce domino.");
+    	    			}
+    	    		} catch(Exception e) {
+    	    			JOptionPane.showMessageDialog(ShowPicture.frame1, "Ce n'est pas un nombre.");
+    	    		}
+        		}
+    		} else {
     		System.out.println("Entrez le numéro du domino choisi");
     		Scanner scan = new Scanner(System.in);
     		while(true) {
@@ -42,6 +63,7 @@ public class Player {
 	    			System.out.println("Ce n'est pas un nombre");
 	    			scan.nextLine();
 	    		}
+    		}
     		}
     	}
     }
