@@ -30,18 +30,6 @@ public class ShowPicture {
 	
 	
 	//////////LES 4 DOMINOS DE CHAQUE TOUR
-	static ImageIcon iconchoisie = new ImageIcon("45-1.jpg");  // A CHANGER EN FONCTION DU DOMINO
-	static RotatedIcon roticon = new RotatedIcon(iconchoisie, 0.0);
-	static JLabel rotdomino = new JLabel(roticon);
-	static ImageIcon iconchoisiebis = new ImageIcon("46-1.jpg");  // A CHANGER EN FONCTION DU DOMINO
-	static RotatedIcon roticonbis = new RotatedIcon(iconchoisiebis, 0.0);
-	static JLabel rotdominobis = new JLabel(roticonbis);	
-	static ImageIcon iconchoisieter = new ImageIcon("47-1.jpg");  // A CHANGER EN FONCTION DU DOMINO
-	static RotatedIcon roticonter = new RotatedIcon(iconchoisieter, 0.0);
-	static JLabel rotdominoter = new JLabel(roticonter);	
-	static ImageIcon iconchoisiequa = new ImageIcon("48-1.jpg");  // A CHANGER EN FONCTION DU DOMINO
-	static RotatedIcon roticonqua = new RotatedIcon(iconchoisiequa, 0.0);
-	static JLabel rotdominoqua = new JLabel(roticonqua);
 	static List<ImageIcon> dominoIcons = new ArrayList<>();
 	
 	public static void main(String args[]) {
@@ -130,14 +118,13 @@ public class ShowPicture {
 	public static void showDominos() {
 		label.add(label49);
 		label49.setBounds(282, 299, 132, 66);
+		for(int i = 0; i <DominoManager.getSelectedDominosNumbers().size(); i++) {
+		ImageIcon iconchoisie = dominoIcons.get(DominoManager.getSelectedDominosNumbers().get(i));
+		RotatedIcon roticon = new RotatedIcon(iconchoisie, 0.0);
+		JLabel rotdomino = new JLabel(roticon);
 		label.add(rotdomino);
-		rotdomino.setBounds(865, 61, 132, 66);
-		label.add(rotdominobis);
-		rotdominobis.setBounds(866, 171, 132, 66);
-		label.add(rotdominoter);
-		rotdominoter.setBounds(867, 280, 132, 66);
-		label.add(rotdominoqua);
-		rotdominoqua.setBounds(867, 387, 132, 66);
+		rotdomino.setBounds(865, 61+110*i, 132, 66);
+		}
 	}
 	////////// END TURN
 	public static void endturn(int x, int y, int posx, int posy, JFrame frame, String orientation, int fintour) {
