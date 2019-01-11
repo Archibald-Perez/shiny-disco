@@ -9,7 +9,7 @@ public class Player {
     private Boolean isAI;
     private Color color;
     private AI ai = null;
-    static boolean placed = false;
+    public boolean placed = false;
 
 
     public Player(String name, Boolean isAI, Color color){
@@ -24,7 +24,7 @@ public class Player {
     
     public Domino selectDomino() {
     	if(isAI) {
-    		return ai.selectDomino();
+    		return ai.selectDomino(this);
     	} else {
     		if (Main.GUI) {
     			while(true) {
@@ -70,59 +70,63 @@ public class Player {
     }
 
     public void setDomino(Board board, Domino domino) throws IOException{
-    	if(Main.GUI) {
-    		ShowPicture.placement(this, board, domino);
+    	if(isAI) {
+    		ai.setDomino(this,board,domino);
     	} else {
-			Scanner scan = new Scanner(System.in);
-			System.out.println("Entrez la position en Y de la première case.");
-			int posY = 0;
-			while(true) {
-	    		try {
-	    			posY = scan.nextInt();
-	    			if(0<=posY && posY<9) {
-	    				System.out.println("OK!");
-	    				break;
-	    			} else {
-	    				System.out.println("C'est en dehors du board.");
-	    			}
-	    		} catch(Exception e) {
-	    			System.out.println("Ce n'est pas un nombre");
-	    			scan.nextLine();
-	    		}
-			}
-			System.out.println("Entrez la position en X de la première case.");
-			int posX = 0;
-			while(true) {
-	    		try {
-	    			posX = scan.nextInt();
-	    			if(0<=posX && posX<9) {
-	    				System.out.println("OK!");
-	    				break;
-	    			} else {
-	    				System.out.println("C'est en dehors du board.");
-	    			}
-	    		} catch(Exception e) {
-	    			System.out.println("Ce n'est pas un nombre");
-	    			scan.nextLine();
-	    		}
-			}
-			System.out.println("Entrez l'orientation du domino.");
-			int orientation = 0;
-			while(true) {
-	    		try {
-	    			orientation = scan.nextInt();
-	    			if(0<=orientation && orientation<4) {
-	    				System.out.println("OK!");
-	    				break;
-	    			} else {
-	    				System.out.println("Impossible");
-	    			}
-	    		} catch(Exception e) {
-	    			System.out.println("Ce n'est pas un nombre");
-	    			scan.nextLine();
-	    		}
-			}
-			verifyDomino(board,domino,posX,posY,orientation);
+	    	if(Main.GUI) {
+	    		ShowPicture.placement(this, board, domino);
+	    	} else {
+				Scanner scan = new Scanner(System.in);
+				System.out.println("Entrez la position en Y de la première case.");
+				int posY = 0;
+				while(true) {
+		    		try {
+		    			posY = scan.nextInt();
+		    			if(0<=posY && posY<9) {
+		    				System.out.println("OK!");
+		    				break;
+		    			} else {
+		    				System.out.println("C'est en dehors du board.");
+		    			}
+		    		} catch(Exception e) {
+		    			System.out.println("Ce n'est pas un nombre");
+		    			scan.nextLine();
+		    		}
+				}
+				System.out.println("Entrez la position en X de la première case.");
+				int posX = 0;
+				while(true) {
+		    		try {
+		    			posX = scan.nextInt();
+		    			if(0<=posX && posX<9) {
+		    				System.out.println("OK!");
+		    				break;
+		    			} else {
+		    				System.out.println("C'est en dehors du board.");
+		    			}
+		    		} catch(Exception e) {
+		    			System.out.println("Ce n'est pas un nombre");
+		    			scan.nextLine();
+		    		}
+				}
+				System.out.println("Entrez l'orientation du domino.");
+				int orientation = 0;
+				while(true) {
+		    		try {
+		    			orientation = scan.nextInt();
+		    			if(0<=orientation && orientation<4) {
+		    				System.out.println("OK!");
+		    				break;
+		    			} else {
+		    				System.out.println("Impossible");
+		    			}
+		    		} catch(Exception e) {
+		    			System.out.println("Ce n'est pas un nombre");
+		    			scan.nextLine();
+		    		}
+				}
+				verifyDomino(board,domino,posX,posY,orientation);
+	    	}
     	}
     }
     public boolean verifyDomino(Board board, Domino domino, int posX, int posY, int orientation) {
@@ -144,28 +148,28 @@ public class Player {
 		}
 		boolean res = false;
 		if(board.getZones()[posY][posX].equals("vide") && board.getZones()[posY2][posX2].equals("vide")) {
-			if(board.getZones()[posY+1][posX].equals(domino.getZone1()) || board.getZones()[posY+1][posX].equals("chateau")) {
+			if(board.getZones()[Math.min(8,posY+1)][posX].equals(domino.getZone1()) || board.getZones()[Math.min(8,posY+1)][posX].equals("chateau")) {
 				board.setDomino(domino, posY, posX, posY2, posX2);
 				res = true;
-			} else if(board.getZones()[posY-1][posX].equals(domino.getZone1()) || board.getZones()[posY-1][posX].equals("chateau")) {
+			} else if(board.getZones()[Math.max(0,posY-1)][posX].equals(domino.getZone1()) || board.getZones()[Math.max(0,posY-1)][posX].equals("chateau")) {
 				board.setDomino(domino, posY, posX, posY2, posX2);
 				res = true;
-			} else if(board.getZones()[posY][posX+1].equals(domino.getZone1()) || board.getZones()[posY][posX+1].equals("chateau")) {
+			} else if(board.getZones()[posY][Math.min(8,posX+1)].equals(domino.getZone1()) || board.getZones()[posY][Math.min(8,posX+1)].equals("chateau")) {
 				board.setDomino(domino, posY, posX, posY2, posX2);
 				res = true;
-			} else if(board.getZones()[posY][posX-1].equals(domino.getZone1()) || board.getZones()[posY][posX-1].equals("chateau")) {
+			} else if(board.getZones()[posY][Math.max(0,posX-1)].equals(domino.getZone1()) || board.getZones()[posY][Math.max(0,posX-1)].equals("chateau")) {
 				board.setDomino(domino, posY, posX, posY2, posX2);
 				res = true;
-			} else if(board.getZones()[posY2+1][posX2].equals(domino.getZone2()) || board.getZones()[posY2+1][posX2].equals("chateau")) {
+			} else if(board.getZones()[Math.min(8,posY2+1)][posX2].equals(domino.getZone2()) || board.getZones()[Math.min(8,posY2+1)][posX2].equals("chateau")) {
 				board.setDomino(domino, posY, posX, posY2, posX2);
 				res = true;
-			} else if(board.getZones()[posY2-1][posX2].equals(domino.getZone2()) || board.getZones()[posY2-1][posX2].equals("chateau")) {
+			} else if(board.getZones()[Math.max(0,posY2-1)][posX2].equals(domino.getZone2()) || board.getZones()[Math.max(0,posY2-1)][posX2].equals("chateau")) {
 				board.setDomino(domino, posY, posX, posY2, posX2);
 				res = true;
-			} else if(board.getZones()[posY2][posX2+1].equals(domino.getZone2()) || board.getZones()[posY2][posX2+1].equals("chateau")) {
+			} else if(board.getZones()[posY2][Math.min(8,posX2+1)].equals(domino.getZone2()) || board.getZones()[posY2][Math.min(8,posX2+1)].equals("chateau")) {
 				board.setDomino(domino, posY, posX, posY2, posX2);
 				res = true;
-			} else if(board.getZones()[posY2][posX2-1].equals(domino.getZone2()) || board.getZones()[posY2][posX2-1].equals("chateau")) {
+			} else if(board.getZones()[posY2][Math.max(0,posX2-1)].equals(domino.getZone2()) || board.getZones()[posY2][Math.max(0,posX2-1)].equals("chateau")) {
 				board.setDomino(domino, posY, posX, posY2, posX2);
 				res = true;
 			} else {
