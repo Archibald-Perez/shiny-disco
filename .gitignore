@@ -1,4 +1,5 @@
 bin/
+out/
 .DS_Store
 .idea
 .settings
