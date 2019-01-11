@@ -27,6 +27,7 @@ public class ShowPicture {
 	static ImageIcon board = new ImageIcon("Board2.jpg");
 	static JLabel label = new JLabel(board);
 	static JLabel label49 = new JLabel(new ImageIcon("Castle.jpg"));
+	static MouseListener mouse = new MouseAdapter() {};
 	
 	
 	//////////LES 4 DOMINOS DE CHAQUE TOUR
@@ -147,6 +148,7 @@ public class ShowPicture {
 					//System.out.println("Fin du tour!");
 					fintour = 0;
 					showDominos();
+					label.removeMouseListener(mouse);
 				} else {
 					JOptionPane.showMessageDialog(frame,"Veuillez d'abord placer un domino!");
 				}
@@ -159,7 +161,6 @@ public class ShowPicture {
 	
 	///////////PLACE DOMINO
 	public static void placement(Player player, Board board, Domino domino) {
-		System.out.println("LE DOMINO: "+domino.getNumber());
 		ImageIcon iconchoisie = dominoIcons.get(domino.getNumber()-1);
 		RotatedIcon roticon = new RotatedIcon(iconchoisie, 0.0);
 		JLabel rotdomino = new JLabel(roticon);
@@ -169,8 +170,9 @@ public class ShowPicture {
 		JLabel rotdomino3 = new JLabel(roticon3);
 		RotatedIcon roticon4 = new RotatedIcon(iconchoisie, 270.0);
 		JLabel rotdomino4 = new JLabel(roticon4);	
-		label.addMouseListener(new MouseAdapter() {
+		mouse = new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				System.out.println("LE DOMINO: "+domino.getNumber());
 				int x = e.getX();
 				int y = e.getY();
 				int button = e.getButton();
@@ -276,9 +278,10 @@ public class ShowPicture {
 					}
 				}
 				endturn(player,board,domino,x,y);
-				return;
-			}
-		});
+				
+			} 
+		};
+		label.addMouseListener(mouse);
 		return;
 	}
 	
