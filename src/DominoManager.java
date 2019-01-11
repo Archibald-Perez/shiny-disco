@@ -9,7 +9,7 @@ public class DominoManager {
 	private static List<Integer> selectedDominosNumbers = new ArrayList<>();
 	private static int nbInDeck = 48;
 	
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws FileNotFoundException, IOException {
 		createDominos();
 		selectDominos();
 		for (int i=0;i<selectedDominos.size();i++) {
@@ -40,7 +40,7 @@ public class DominoManager {
 			}
 		}
 	}
-	public static void selectDominos() {
+	public static void selectDominos()  throws IOException{
 		selectedDominos.clear();
 		Random random = new Random();
 		while(selectedDominos.size() < PlayerManager.getNbKing()) {

@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.io.IOException;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
@@ -68,7 +69,7 @@ public class Player {
     	}
     }
 
-    public void setDomino(Board board, Domino domino) {
+    public void setDomino(Board board, Domino domino) throws IOException{
     	if(Main.GUI) {
     		ShowPicture.placement(this, board, domino);
     	} else {

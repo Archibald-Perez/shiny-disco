@@ -1,8 +1,13 @@
 
 import java.awt.FlowLayout;
+import java.awt.Graphics2D;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -24,9 +29,19 @@ public class ShowPicture {
 	static JFrame frame = new JFrame();
 	static ImageIcon menu = new ImageIcon("Menu1.jpg");
 	static JLabel labelmenu = new JLabel(menu);
-	static ImageIcon board = new ImageIcon("Board2.jpg");
-	static JLabel label = new JLabel(board);
+	static ImageIcon board0 = new ImageIcon("BoardPlayer1.jpg");
+	static JLabel labelB0 = new JLabel(board0);
+	static ImageIcon board1 = new ImageIcon("BoardPlayer2.jpg");
+	static JLabel labelB1 = new JLabel(board1);
+	static ImageIcon board2 = new ImageIcon("BoardPlayer3.jpg");
+	static JLabel labelB2 = new JLabel(board2);
+	static ImageIcon board3 = new ImageIcon("BoardPlayer4.jpg");
+	static JLabel labelB3 = new JLabel(board3);
+	static List<JLabel> labelsB = new ArrayList<>();
 	static JLabel label49 = new JLabel(new ImageIcon("Castle.jpg"));
+	static JLabel label49_1 = new JLabel(new ImageIcon("Castle.jpg"));
+	static JLabel label49_2 = new JLabel(new ImageIcon("Castle.jpg"));
+	static JLabel label49_3 = new JLabel(new ImageIcon("Castle.jpg"));
 	static MouseListener mouse = new MouseAdapter() {};
 	
 	
@@ -37,7 +52,7 @@ public class ShowPicture {
 		//music(new File("theme.wav"));
 	}
 	
-	public static void creation() {
+	public static void creation() throws IOException{
 		frame1.setLayout(new FlowLayout());
 		frame1.add(labelmenu);
 		frame1.pack();
@@ -46,8 +61,25 @@ public class ShowPicture {
 		for(int i = 1; i < 49; i++) {
 			dominoIcons.add(new ImageIcon(i+"-1.jpg"));
 		}
-		label.add(label49);
+		labelB0.add(label49);
 		label49.setBounds(282, 299, 132, 66);
+		labelB1.add(label49_1);
+		label49_1.setBounds(282, 299, 132, 66);
+		labelB2.add(label49_2);
+		label49_2.setBounds(282, 299, 132, 66);
+		labelB3.add(label49_3);
+		label49_3.setBounds(282, 299, 132, 66);
+		labelsB.add(labelB0);
+		labelsB.add(labelB1);
+		labelsB.add(labelB2);
+		labelsB.add(labelB3);
+		for(int playNum=0; playNum<4; playNum++) {
+			BufferedImage img = new BufferedImage(1100, 726, BufferedImage.TYPE_INT_ARGB);
+			Graphics2D g2d = img.createGraphics();
+			labelsB.get(playNum).printAll(g2d);
+			g2d.dispose();
+			ImageIO.write(img, "png", new File("PLAYERBOARD"+playNum+".png"));
+		}
 	}
 	
 	///////////MENU PRINCIPAL
@@ -70,28 +102,40 @@ public class ShowPicture {
 					if (965 < x && x < 1005) {
 						nbPlayer = 2;
 						frame1.setVisible(false);
-						frame.add(label);
+						frame.add(labelB0);
+						frame.add(labelB1);
+						frame.add(labelB2);
+						frame.add(labelB3);
 						frame.pack();
 						frame.setVisible(true);
 					}
 					if (1027 < x && x < 1075) {
 						nbPlayer = 3;
 						frame1.setVisible(false);
-						frame.add(label);
+						frame.add(labelB0);
+						frame.add(labelB1);
+						frame.add(labelB2);
+						frame.add(labelB3);
 						frame.pack();
 						frame.setVisible(true);
 					}
 					if (1092 < x && x < 1140) {
 						nbPlayer = 4;
 						frame1.setVisible(false);
-						frame.add(label);
+						frame.add(labelB0);
+						frame.add(labelB1);
+						frame.add(labelB2);
+						frame.add(labelB3);
 						frame.pack();
 						frame.setVisible(true);
 					}
 				}
 				if (853 < x && x < 1195 && 367 < y && y < 423) {
 					frame1.setVisible(false);
-					frame.add(label);
+					frame.add(labelB0);
+					frame.add(labelB1);
+					frame.add(labelB2);
+					frame.add(labelB3);
 					frame.pack();
 					frame.setVisible(true);					
 				}
@@ -112,18 +156,33 @@ public class ShowPicture {
 			}
 		});
 	}
-	public static void showDominos() {
+	
+	public static void showDominos(){
 		reload();
 		for(int i = 0; i <PlayerManager.getNbKing(); i++) {
 			ImageIcon iconchoisie = dominoIcons.get(DominoManager.getSelectedDominos().get(i).getNumber()-1);
 			RotatedIcon roticon = new RotatedIcon(iconchoisie, 0.0);
 			JLabel rotdomino = new JLabel(roticon);
-			label.add(rotdomino);
+			JLabel rotdomino1 = new JLabel(roticon);
+			JLabel rotdomino2 = new JLabel(roticon);
+			JLabel rotdomino3 = new JLabel(roticon);
+			labelB0.add(label49);
+			labelB0.add(rotdomino);
+			labelB1.add(label49_1);
+			labelB1.add(rotdomino1);
+			labelB2.add(label49_2);
+			labelB2.add(rotdomino2);
+			labelB3.add(label49_3);
+			labelB3.add(rotdomino3);
 			rotdomino.setBounds(865, 61+110*i, 132, 66);
+			rotdomino1.setBounds(865, 61+110*i, 132, 66);
+			rotdomino2.setBounds(865, 61+110*i, 132, 66);
+			rotdomino3.setBounds(865, 61+110*i, 132, 66);
 		}
 	}
 	////////// END TURN
-	public static void endturn(Player player, Board board, Domino domino, int x, int y) {
+	public static void endturn(Player player, Board board, Domino domino, int x, int y)  throws IOException{
+		int playNum = PlayerManager.getPlayers().indexOf(player);
 		if (578 < x && x < 645 && 638 < y && y < 673) {
 			int option = JOptionPane.showConfirmDialog(frame, "Voulez-vous valider votre tour?",
 					"Close Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -147,8 +206,13 @@ public class ShowPicture {
 					//System.out.println("Position: [" + a + ";" + b + "]");
 					//System.out.println("Fin du tour!");
 					fintour = 0;
+					BufferedImage img = new BufferedImage(1100, 726, BufferedImage.TYPE_INT_ARGB);
+					Graphics2D g2d = img.createGraphics();
+					labelsB.get(playNum).printAll(g2d);
+					g2d.dispose();
+					ImageIO.write(img, "png", new File("PLAYERBOARD"+playNum+".png"));
 					showDominos();
-					label.removeMouseListener(mouse);
+					labelsB.get(playNum).removeMouseListener(mouse);
 				} else {
 					JOptionPane.showMessageDialog(frame,"Veuillez d'abord placer un domino!");
 				}
@@ -160,7 +224,15 @@ public class ShowPicture {
 	}
 	
 	///////////PLACE DOMINO
-	public static void placement(Player player, Board board, Domino domino) {
+	public static void placement(Player player, Board board, Domino domino) throws IOException{
+		int playNum = PlayerManager.getPlayers().indexOf(player);
+		labelB0.setVisible(false);
+		labelB1.setVisible(false);
+		labelB2.setVisible(false);
+		labelB3.setVisible(false);
+		System.out.println(playNum);
+		System.out.println(labelsB.get(playNum));
+		labelsB.get(playNum).setVisible(true);
 		ImageIcon iconchoisie = dominoIcons.get(domino.getNumber()-1);
 		RotatedIcon roticon = new RotatedIcon(iconchoisie, 0.0);
 		JLabel rotdomino = new JLabel(roticon);
@@ -170,7 +242,7 @@ public class ShowPicture {
 		JLabel rotdomino3 = new JLabel(roticon3);
 		RotatedIcon roticon4 = new RotatedIcon(iconchoisie, 270.0);
 		JLabel rotdomino4 = new JLabel(roticon4);	
-		mouse = new MouseAdapter() {
+		mouse = new MouseAdapter(){
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("LE DOMINO: "+domino.getNumber());
 				int x = e.getX();
@@ -198,12 +270,12 @@ public class ShowPicture {
 									JOptionPane.showMessageDialog(frame,
 											"Vous ne pouvez pas placer de domino sur le château!");
 								} else {
-									label.add(rotdomino);
-									label.remove(rotdomino2);
-									label.remove(rotdomino3);
-									label.remove(rotdomino4);
-									label.revalidate();
-									label.repaint();
+									labelsB.get(playNum).add(rotdomino);
+									labelsB.get(playNum).remove(rotdomino2);
+									labelsB.get(playNum).remove(rotdomino3);
+									labelsB.get(playNum).remove(rotdomino4);
+									labelsB.get(playNum).revalidate();
+									labelsB.get(playNum).repaint();
 									rotdomino.setBounds(i, j, 132, 66);
 									orientation = "droite";
 									fintour = 1;
@@ -219,12 +291,12 @@ public class ShowPicture {
 									JOptionPane.showMessageDialog(frame,
 											"Vous ne pouvez pas placer de domino sur le château!");
 								} else {
-									label.remove(rotdomino);
-									label.add(rotdomino2);
-									label.remove(rotdomino3);
-									label.remove(rotdomino4);
-									label.revalidate();
-									label.repaint();
+									labelsB.get(playNum).remove(rotdomino);
+									labelsB.get(playNum).add(rotdomino2);
+									labelsB.get(playNum).remove(rotdomino3);
+									labelsB.get(playNum).remove(rotdomino4);
+									labelsB.get(playNum).revalidate();
+									labelsB.get(playNum).repaint();
 									rotdomino2.setBounds(i, j, 66, 132);
 									orientation = "bas";
 									fintour = 1;
@@ -240,12 +312,12 @@ public class ShowPicture {
 									JOptionPane.showMessageDialog(frame,
 											"Vous ne pouvez pas placer de domino sur le château!");
 								} else {
-									label.remove(rotdomino);
-									label.remove(rotdomino2);
-									label.add(rotdomino3);
-									label.remove(rotdomino4);
-									label.revalidate();
-									label.repaint();
+									labelsB.get(playNum).remove(rotdomino);
+									labelsB.get(playNum).remove(rotdomino2);
+									labelsB.get(playNum).add(rotdomino3);
+									labelsB.get(playNum).remove(rotdomino4);
+									labelsB.get(playNum).revalidate();
+									labelsB.get(playNum).repaint();
 									rotdomino3.setBounds(i, j, 132, 66);
 									orientation = "gauche";
 									fintour = 1;
@@ -261,12 +333,12 @@ public class ShowPicture {
 									JOptionPane.showMessageDialog(frame,
 											"Vous ne pouvez pas placer de domino sur le château!");
 								} else {
-									label.remove(rotdomino);
-									label.remove(rotdomino2);
-									label.remove(rotdomino3);
-									label.add(rotdomino4);
-									label.revalidate();
-									label.repaint();
+									labelsB.get(playNum).remove(rotdomino);
+									labelsB.get(playNum).remove(rotdomino2);
+									labelsB.get(playNum).remove(rotdomino3);
+									labelsB.get(playNum).add(rotdomino4);
+									labelsB.get(playNum).revalidate();
+									labelsB.get(playNum).repaint();
 									rotdomino4.setBounds(i, j, 66, 132);
 									orientation = "haut";
 									fintour = 1;
@@ -277,19 +349,34 @@ public class ShowPicture {
 						}
 					}
 				}
+				try{
 				endturn(player,board,domino,x,y);
-				
+				} catch (IOException err) {
+					throw new RuntimeException(err);
+				}
 			} 
 		};
-		label.addMouseListener(mouse);
+		labelsB.get(playNum).addMouseListener(mouse);
 		return;
 	}
 	
 	public static void reload() {
-		label.removeAll();
-		label.revalidate();
-		label.repaint();
-		label.add(label49);
+		labelB0.removeAll();
+		labelB0.revalidate();
+		labelB0.repaint();
+		labelB0.add(label49);
+		labelB1.removeAll();
+		labelB1.revalidate();
+		labelB1.repaint();
+		labelB1.add(label49);
+		labelB2.removeAll();
+		labelB2.revalidate();
+		labelB2.repaint();
+		labelB2.add(label49);
+		labelB3.removeAll();
+		labelB3.revalidate();
+		labelB3.repaint();
+		labelB3.add(label49);
 		label49.setBounds(282, 299, 132, 66);
 	}
 	/////////// BACKGROUND MUSIC

@@ -9,7 +9,7 @@ public class Main {
 	public static boolean GUI = true;
 	public static List<Board> boards = new ArrayList<>();
 	
-	public static void main(String[] args) throws FileNotFoundException{
+	public static void main(String[] args) throws FileNotFoundException, IOException{
 		// Menu
 			ShowPicture.creation();
 			ShowPicture.closeall(ShowPicture.frame1);
