@@ -125,7 +125,7 @@ public class Player {
 			verifyDomino(board,domino,posX,posY,orientation);
     	}
     }
-    public void verifyDomino(Board board, Domino domino, int posX, int posY, int orientation) {
+    public boolean verifyDomino(Board board, Domino domino, int posX, int posY, int orientation) {
     	int posY2 = posY;
 		int posX2 = posX;
 		switch(orientation) {
@@ -142,23 +142,32 @@ public class Player {
 			posX2+=1;
 			break;
 		}
+		boolean res = false;
 		if(board.getZones()[posY][posX].equals("vide") && board.getZones()[posY2][posX2].equals("vide")) {
 			if(board.getZones()[posY+1][posX].equals(domino.getZone1()) || board.getZones()[posY+1][posX].equals("chateau")) {
 				board.setDomino(domino, posY, posX, posY2, posX2);
+				res = true;
 			} else if(board.getZones()[posY-1][posX].equals(domino.getZone1()) || board.getZones()[posY-1][posX].equals("chateau")) {
 				board.setDomino(domino, posY, posX, posY2, posX2);
+				res = true;
 			} else if(board.getZones()[posY][posX+1].equals(domino.getZone1()) || board.getZones()[posY][posX+1].equals("chateau")) {
 				board.setDomino(domino, posY, posX, posY2, posX2);
+				res = true;
 			} else if(board.getZones()[posY][posX-1].equals(domino.getZone1()) || board.getZones()[posY][posX-1].equals("chateau")) {
 				board.setDomino(domino, posY, posX, posY2, posX2);
+				res = true;
 			} else if(board.getZones()[posY2+1][posX2].equals(domino.getZone2()) || board.getZones()[posY2+1][posX2].equals("chateau")) {
 				board.setDomino(domino, posY, posX, posY2, posX2);
+				res = true;
 			} else if(board.getZones()[posY2-1][posX2].equals(domino.getZone2()) || board.getZones()[posY2-1][posX2].equals("chateau")) {
 				board.setDomino(domino, posY, posX, posY2, posX2);
+				res = true;
 			} else if(board.getZones()[posY2][posX2+1].equals(domino.getZone2()) || board.getZones()[posY2][posX2+1].equals("chateau")) {
 				board.setDomino(domino, posY, posX, posY2, posX2);
+				res = true;
 			} else if(board.getZones()[posY2][posX2-1].equals(domino.getZone2()) || board.getZones()[posY2][posX2-1].equals("chateau")) {
 				board.setDomino(domino, posY, posX, posY2, posX2);
+				res = true;
 			} else {
 				System.out.println("Vous ne pouvez pas placer le domino ici! Domino défaussé");
 				placed = true;
@@ -168,6 +177,8 @@ public class Player {
 			placed = true;
 		}
 		placed = true;
+		System.out.println("LOOKKKKK AT MMMMEEEE "+res);
+		return res;
     }
     public String getName() {
     	return name;

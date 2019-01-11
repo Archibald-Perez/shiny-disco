@@ -73,6 +73,11 @@ public class ShowPicture {
 		labelsB.add(labelB1);
 		labelsB.add(labelB2);
 		labelsB.add(labelB3);
+		frame.add(labelB0);
+		frame.add(labelB1);
+		frame.add(labelB2);
+		frame.add(labelB3);
+		frame.pack();
 		for(int playNum=0; playNum<4; playNum++) {
 			BufferedImage img = new BufferedImage(1100, 726, BufferedImage.TYPE_INT_ARGB);
 			Graphics2D g2d = img.createGraphics();
@@ -102,42 +107,22 @@ public class ShowPicture {
 					if (965 < x && x < 1005) {
 						nbPlayer = 2;
 						frame1.setVisible(false);
-						frame.add(labelB0);
-						frame.add(labelB1);
-						frame.add(labelB2);
-						frame.add(labelB3);
-						frame.pack();
 						frame.setVisible(true);
 					}
 					if (1027 < x && x < 1075) {
 						nbPlayer = 3;
 						frame1.setVisible(false);
-						frame.add(labelB0);
-						frame.add(labelB1);
-						frame.add(labelB2);
-						frame.add(labelB3);
-						frame.pack();
 						frame.setVisible(true);
 					}
 					if (1092 < x && x < 1140) {
 						nbPlayer = 4;
 						frame1.setVisible(false);
-						frame.add(labelB0);
-						frame.add(labelB1);
-						frame.add(labelB2);
-						frame.add(labelB3);
-						frame.pack();
 						frame.setVisible(true);
 					}
 				}
 				if (853 < x && x < 1195 && 367 < y && y < 423) {
 					frame1.setVisible(false);
-					frame.add(labelB0);
-					frame.add(labelB1);
-					frame.add(labelB2);
-					frame.add(labelB3);
-					frame.pack();
-					frame.setVisible(true);					
+					frame.setVisible(true);	
 				}
 			}
 		});
@@ -201,17 +186,18 @@ public class ShowPicture {
 					if(orientation.equals("droite")) {
 						orient = 3;
 					}
-					player.verifyDomino(board, domino, a, b, orient);
-					//System.out.println("Le domino est orienté vers " + orientation + "");
-					//System.out.println("Position: [" + a + ";" + b + "]");
-					//System.out.println("Fin du tour!");
-					fintour = 0;
-					BufferedImage img = new BufferedImage(1100, 726, BufferedImage.TYPE_INT_ARGB);
-					Graphics2D g2d = img.createGraphics();
-					labelsB.get(playNum).printAll(g2d);
-					g2d.dispose();
-					ImageIO.write(img, "png", new File("PLAYERBOARD"+playNum+".png"));
+					if(player.verifyDomino(board, domino, a, b, orient)) {
+						System.out.println("Le domino est orienté vers " + orientation + "");
+						System.out.println("Position: [" + a + ";" + b + "]");
+						System.out.println("Fin du tour!");
+						BufferedImage img = new BufferedImage(1100, 726, BufferedImage.TYPE_INT_ARGB);
+						Graphics2D g2d = img.createGraphics();
+						labelsB.get(playNum).printAll(g2d);
+						g2d.dispose();
+						ImageIO.write(img, "png", new File("PLAYERBOARD"+playNum+".png"));
+					}
 					showDominos();
+					fintour = 0;
 					labelsB.get(playNum).removeMouseListener(mouse);
 				} else {
 					JOptionPane.showMessageDialog(frame,"Veuillez d'abord placer un domino!");
@@ -230,9 +216,28 @@ public class ShowPicture {
 		labelB1.setVisible(false);
 		labelB2.setVisible(false);
 		labelB3.setVisible(false);
-		System.out.println(playNum);
-		System.out.println(labelsB.get(playNum));
-		labelsB.get(playNum).setVisible(true);
+		if(playNum == 0) {
+			String imageName = "PLAYERBOARD0.png";
+			labelB0.setIcon( new ImageIcon(ImageIO.read( new File(imageName) ) ) );
+			labelB0.setVisible(true);
+		}
+		if(playNum == 1) {
+			String imageName = "PLAYERBOARD1.png";
+			labelB1.setIcon( new ImageIcon(ImageIO.read( new File(imageName) ) ) );
+			labelB1.setVisible(true);
+		}
+		if(playNum == 2) {
+			String imageName = "PLAYERBOARD2.png";
+			labelB2.setIcon( new ImageIcon(ImageIO.read( new File(imageName) ) ) );
+			labelB2.setVisible(true);
+		}
+		if(playNum == 3) {
+			String imageName = "PLAYERBOARD3.png";
+			labelB3.setIcon( new ImageIcon(ImageIO.read( new File(imageName) ) ) );
+			labelB3.setVisible(true);
+		}
+		frame.revalidate();
+		frame.repaint();
 		ImageIcon iconchoisie = dominoIcons.get(domino.getNumber()-1);
 		RotatedIcon roticon = new RotatedIcon(iconchoisie, 0.0);
 		JLabel rotdomino = new JLabel(roticon);
