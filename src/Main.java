@@ -80,9 +80,9 @@ public class Main {
 				win = i;
 				maxScore = score;
 			}
-			System.out.println("Le joueur "+PlayerManager.getPlayers().get(i).getName()+"a obtenu "+score);
+			System.out.println("Le joueur "+PlayerManager.getPlayers().get(i).getName()+" a obtenu "+score);
 		}
-		System.out.println("Le joueur "+PlayerManager.getPlayers().get(win).getName()+"a gagné!");
+		System.out.println("Le joueur "+PlayerManager.getPlayers().get(win).getName()+" a gagné!");
 		// Affiche le vainqueur
 		// Retourne au menu
 	}
