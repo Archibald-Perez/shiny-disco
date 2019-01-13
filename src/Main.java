@@ -78,7 +78,7 @@ public class Main {
 				}
 				System.out.println(turnPlayer.getName()+" choisi un domino");
 				PlayerManager.getDominoSequence().add(turnPlayer.selectDomino());
-				System.out.println(turnBoard.score());
+				System.out.println("Votre score est : "+turnBoard.score());
 			}
 			System.out.println("");
 			PlayerManager.restartSequence();
