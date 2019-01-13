@@ -62,9 +62,9 @@ public class Main {
 				Board turnBoard = boards.get(indexPlayer);
 				System.out.println(turnBoard);
 				if(Main.GUI) {
-					JOptionPane.showMessageDialog(ShowPicture.frame1, "Le joueur "+turnPlayer.getName()+" place le domino : "+turnDomino);
+					JOptionPane.showMessageDialog(ShowPicture.frame1, turnPlayer.getName()+" place le domino : "+turnDomino);
 				}
-				System.out.println("Le joueur "+turnPlayer.getName()+" place le domino : "+turnDomino);
+				System.out.println(turnPlayer.getName()+" place le domino : "+turnDomino);
 				// Le joueur place son domino
 				turnPlayer.setDomino(turnBoard, turnDomino);
 				while(!turnPlayer.placed) {
@@ -73,16 +73,37 @@ public class Main {
 				turnPlayer.placed = false;
 				System.out.println(turnBoard);
 				// Le joueur choisi le domino suivant
+				System.out.println("Votre score est : "+turnBoard.score());
 				if(Main.GUI) {
 					JOptionPane.showMessageDialog(ShowPicture.frame1, turnPlayer.getName()+" choisi un domino");
 				}
 				System.out.println(turnPlayer.getName()+" choisi un domino");
 				PlayerManager.getDominoSequence().add(turnPlayer.selectDomino());
-				System.out.println("Votre score est : "+turnBoard.score());
 			}
 			System.out.println("");
 			PlayerManager.restartSequence();
 			
+		}
+		// Dernier tour
+		for (int i = 0; i< PlayerManager.getNbKing(); i++) {
+			int indexPlayer = PlayerManager.getSequence().get(i);
+			Player turnPlayer = PlayerManager.getPlayers().get(indexPlayer);
+			Domino turnDomino = PlayerManager.getDominoSequence().get(i);
+			Board turnBoard = boards.get(indexPlayer);
+			System.out.println(turnBoard);
+			if(Main.GUI) {
+				JOptionPane.showMessageDialog(ShowPicture.frame1, turnPlayer.getName()+" place le domino : "+turnDomino);
+			}
+			System.out.println(turnPlayer.getName()+" place le domino : "+turnDomino);
+			// Le joueur place son domino
+			turnPlayer.setDomino(turnBoard, turnDomino);
+			while(!turnPlayer.placed) {
+				System.out.print("");
+			}
+			turnPlayer.placed = false;
+			System.out.println(turnBoard);
+			// Le joueur choisi le domino suivant
+			System.out.println("Votre score est : "+turnBoard.score());
 		}
 		int win = 0;
 		int maxScore = 0;
