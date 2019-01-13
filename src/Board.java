@@ -94,19 +94,20 @@ public class Board {
         for (int i = 0; i < this.size; i++) {
             for (int j = 0; j < this.size; j++) {
                 try {
-                    if (tabZone[i][j]!= tabZone[i][j+1] && zones[i][j].equals(zones[i][j+1]) ){
-                        replace (tabZone, tabZone[i][j+1], tabZone[i][j]);
+                    if (tabZone[i][j] != tabZone[i][j + 1] && zones[i][j].equals(zones[i][j + 1])) {
+                        replace(tabZone, tabZone[i][j + 1], tabZone[i][j]);
 
-                }
-                }
-                catch (Exception e){}
-                try {
-                    if (tabZone[i][j]!= tabZone[i+1][j] && zones[i][j].equals(zones[i+1][j]) ){
-                        replace (tabZone, tabZone[i+1][j], tabZone[i][j]);
                     }
+                } catch (Exception e) {
                 }
-                catch (Exception e){}
+                try {
+                    if (tabZone[i][j] != tabZone[i + 1][j] && zones[i][j].equals(zones[i + 1][j])) {
+                        replace(tabZone, tabZone[i + 1][j], tabZone[i][j]);
+                    }
+                } catch (Exception e) {
+                }
 
+            }
         }
 
 
