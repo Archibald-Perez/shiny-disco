@@ -62,12 +62,7 @@ public class DominoManager {
 		}
 		for (int i=0;i<DominoManager.getSelectedDominos().size();i++) {
 			Domino domino = DominoManager.getSelectedDominos().get(i);
-			if (Main.GUI) {
-				JOptionPane.showMessageDialog(ShowPicture.frame1, "Dominos sélectionnés:" + domino);
 				System.out.println(domino);
-			} else {
-				System.out.println(domino);
-			}
 		}
 		ShowPicture.showDominos();
 	}

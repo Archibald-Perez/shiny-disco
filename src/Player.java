@@ -149,41 +149,65 @@ public class Player {
 		boolean res = false;
 		for(int j=-8; j<9; j++) {
 			if(!board.getZones()[Math.max(Math.min(posY+j,8),0)][Math.min(posX+5,8)].equals("vide")) {
+				if(Main.GUI) {
+					JOptionPane.showMessageDialog(ShowPicture.frame1,"Le domino sort de la zone! Domino défaussé");
+				}
 				System.out.println("Le domino sort de la zone! Domino défaussé");
 				System.out.println(1+" "+j);
 				placed = true;
 				return false;
 			} else if (!board.getZones()[Math.max(Math.min(posY+j,8),0)][Math.max(posX-5,0)].equals("vide")) {
+				if(Main.GUI) {
+					JOptionPane.showMessageDialog(ShowPicture.frame1,"Le domino sort de la zone! Domino défaussé");
+				}
 				System.out.println("Le domino sort de la zone! Domino défaussé");
 				placed = true;
 				System.out.println(2+" "+j);
 				return false;
 			} else if(!board.getZones()[Math.min(posY+5,8)][Math.max(Math.min(posX+j,8),0)].equals("vide")) {
+				if(Main.GUI) {
+					JOptionPane.showMessageDialog(ShowPicture.frame1,"Le domino sort de la zone! Domino défaussé");
+				}
 				System.out.println("Le domino sort de la zone! Domino défaussé");
 				System.out.println(3+" "+j);
 				placed = true;
 				return false;
 			} else if (!board.getZones()[Math.max(posY-5,0)][Math.max(Math.min(posX+j,8),0)].equals("vide")) {
+				if(Main.GUI) {
+					JOptionPane.showMessageDialog(ShowPicture.frame1,"Le domino sort de la zone! Domino défaussé");
+				}
 				System.out.println("Le domino sort de la zone! Domino défaussé");
 				System.out.println(4+" "+j);
 				placed = true;
 				return false;
 			} else if(!board.getZones()[Math.max(Math.min(posY2+j,8),0)][Math.min(posX2+5,8)].equals("vide")) {
+				if(Main.GUI) {
+					JOptionPane.showMessageDialog(ShowPicture.frame1,"Le domino sort de la zone! Domino défaussé");
+				}
 				System.out.println("Le domino sort de la zone! Domino défaussé");
 				System.out.println(1+" "+j+"2");
 				placed = true;
 				return false;
 			} else if (!board.getZones()[Math.max(Math.min(posY2+j,8),0)][Math.max(posX2-5,0)].equals("vide")) {
+				if(Main.GUI) {
+					JOptionPane.showMessageDialog(ShowPicture.frame1,"Le domino sort de la zone! Domino défaussé");
+				}
 				System.out.println("Le domino sort de la zone! Domino défaussé");
 				placed = true;
 				System.out.println(2+" "+j+"2");
 				return false;
 			} else if(!board.getZones()[Math.min(posY2+5,8)][Math.max(Math.min(posX2+j,8),0)].equals("vide")) {
+				if(Main.GUI) {
+					JOptionPane.showMessageDialog(ShowPicture.frame1,"Le domino sort de la zone! Domino défaussé");
+				}
 				System.out.println("Le domino sort de la zone! Domino défaussé");
 				System.out.println(3+" "+j+"2");
 				placed = true;
 				return false;
 			} else if (!board.getZones()[Math.max(posY2-5,0)][Math.max(Math.min(posX2+j,8),0)].equals("vide")) {
+				if(Main.GUI) {
+					JOptionPane.showMessageDialog(ShowPicture.frame1,"Le domino sort de la zone! Domino défaussé");
+				}
 				System.out.println("Le domino sort de la zone! Domino défaussé");
 				System.out.println(4+" "+j+"2");
 				placed = true;
@@ -219,6 +243,9 @@ public class Player {
 				System.out.println(board.getZones()[posY][posX]);
 				System.out.println(board.getZones()[posY2][posX2]);
 				System.out.println(posX+" "+posY+" "+posX2+" "+posY2);
+				if(Main.GUI) {
+					JOptionPane.showMessageDialog(ShowPicture.frame1,"Vous ne pouvez pas placer le domino ici! Domino défaussé");
+				}
 				System.out.println("Vous ne pouvez pas placer le domino ici! Domino défaussé");
 				placed = true;
 			}
@@ -226,6 +253,9 @@ public class Player {
 			System.out.println(board.getZones()[posY][posX]);
 			System.out.println(board.getZones()[posY2][posX2]);
 			System.out.println(posX+" "+posY+" "+posX2+" "+posY2);
+			if(Main.GUI) {
+				JOptionPane.showMessageDialog(ShowPicture.frame1,"Case déjà prise! Domino défaussé");
+			}
 			System.out.println("Case déjà prise! Domino défaussé");
 			placed = true;
 		}

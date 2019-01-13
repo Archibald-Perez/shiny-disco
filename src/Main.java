@@ -1,4 +1,7 @@
 import java.util.*;
+
+import javax.swing.JOptionPane;
+
 import java.io.*;
 
 /**
@@ -39,6 +42,9 @@ public class Main {
 		PlayerManager.initialSequence();
 		for (int i = 0; i< PlayerManager.getNbKing(); i++) {
 			Player turnPlayer = PlayerManager.getPlayers().get(PlayerManager.getSequence().get(i));
+			if(Main.GUI) {
+				JOptionPane.showMessageDialog(ShowPicture.frame1, turnPlayer.getName()+" choisi un domino");
+			}
 			System.out.println(turnPlayer.getName()+" choisi un domino");
 			turnPlayer.selectDomino();
 		}
@@ -55,6 +61,9 @@ public class Main {
 				Domino turnDomino = PlayerManager.getDominoSequence().get(i);
 				Board turnBoard = boards.get(indexPlayer);
 				System.out.println(turnBoard);
+				if(Main.GUI) {
+					JOptionPane.showMessageDialog(ShowPicture.frame1, "Le joueur "+turnPlayer.getName()+" place le domino : "+turnDomino);
+				}
 				System.out.println("Le joueur "+turnPlayer.getName()+" place le domino : "+turnDomino);
 				// Le joueur place son domino
 				turnPlayer.setDomino(turnBoard, turnDomino);
@@ -64,6 +73,9 @@ public class Main {
 				turnPlayer.placed = false;
 				System.out.println(turnBoard);
 				// Le joueur choisi le domino suivant
+				if(Main.GUI) {
+					JOptionPane.showMessageDialog(ShowPicture.frame1, turnPlayer.getName()+" choisi un domino");
+				}
 				System.out.println(turnPlayer.getName()+" choisi un domino");
 				PlayerManager.getDominoSequence().add(turnPlayer.selectDomino());
 				System.out.println(turnBoard.score());
@@ -79,8 +91,14 @@ public class Main {
 			if(score>maxScore) {
 				win = i;
 				maxScore = score;
+			} 
+			if(Main.GUI) {
+				JOptionPane.showMessageDialog(ShowPicture.frame1, "Le joueur "+PlayerManager.getPlayers().get(i).getName()+" a obtenu "+score);
 			}
 			System.out.println("Le joueur "+PlayerManager.getPlayers().get(i).getName()+" a obtenu "+score);
+		}
+		if(Main.GUI) {
+			JOptionPane.showMessageDialog(ShowPicture.frame1, "Le joueur "+PlayerManager.getPlayers().get(win).getName()+" a gagné!");
 		}
 		System.out.println("Le joueur "+PlayerManager.getPlayers().get(win).getName()+" a gagné!");
 		// Affiche le vainqueur
