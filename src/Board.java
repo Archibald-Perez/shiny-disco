@@ -47,15 +47,27 @@ public class Board {
         return n;
     }
 
+    public void replace(int[][] tableau, int a, int b ){
+        for (int i = 0; i< tableau.length; i++){
+            for (int j = 0; j< tableau.length; j++){
+                if (tableau[i][j] == a){
+                    tableau[i][j] = b;
+                }
+            }
+        }
+    }
+
     public ArrayList<ArrayList<Integer>> getZoneCrown(String[][] zones,int[][] crowns ) {
         int[][] tabZone = new int[this.size][this.size];
         ArrayList<ArrayList<Integer>> score = new ArrayList<ArrayList<Integer>>();
         int max = 1;
+        //on initialise le tableau tabZone.
         for (int i = 0; i < this.size; i++) {
             for (int j = 0; j < this.size; j++) {
                 tabZone[i][j] = 0;
             }
         }
+
         for (int i = 0; i < this.size; i++) {
             for (int j = 0; j < this.size; j++) {
                 try {
@@ -77,6 +89,27 @@ public class Board {
                 }
             }
         }
+
+
+        for (int i = 0; i < this.size; i++) {
+            for (int j = 0; j < this.size; j++) {
+                try {
+                    if (tabZone[i][j]!= tabZone[i][j+1] && zones[i][j].equals(zones[i][j+1]) ){
+                        replace (tabZone, tabZone[i][j+1], tabZone[i][j]);
+
+                }
+                }
+                catch (Exception e){}
+                try {
+                    if (tabZone[i][j]!= tabZone[i+1][j] && zones[i][j].equals(zones[i+1][j]) ){
+                        replace (tabZone, tabZone[i+1][j], tabZone[i][j]);
+                    }
+                }
+                catch (Exception e){}
+
+        }
+
+
         for (int k = 1; k<max;k++){
             int nbZone =0;
             int nbCrown = 0;
