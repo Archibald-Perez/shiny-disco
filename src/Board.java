@@ -62,13 +62,13 @@ public class Board {
                     if (zones[i][j].equals(zones[i - 1][j])) {
                         tabZone[i][j] = tabZone[i - 1][j];
                     }
-                } catch (Exception e) { continue;
+                } catch (Exception e) {
                 }
                 try {
                     if (zones[i][j].equals(zones[i][j - 1])) {
                         tabZone[i][j] = tabZone[i][j - 1];
                     }
-                } catch (Exception e) { continue;
+                } catch (Exception e) {
                 }
                 if (tabZone[i][j] == 0) {
                     tabZone[i][j] = max;
