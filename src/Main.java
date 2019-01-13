@@ -104,11 +104,4 @@ public class Main {
 		// Affiche le vainqueur
 		// Retourne au menu
 	}
-
-	public static void menu(){
-		System.out.println("Domi'Nations");
-		System.out.println("1. Jouer une partie");
-		System.out.println("2. Quitter");
-	}
-	
 }
