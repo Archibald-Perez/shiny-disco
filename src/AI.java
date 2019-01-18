@@ -49,36 +49,20 @@ public class AI {
 		boolean res = false;
 		for(int j=-8; j<9; j++) {
 			if(!board.getZones()[Math.max(Math.min(posY+j,8),0)][Math.min(posX+5,8)].equals("vide")) {
-				System.out.println("Le domino sort de la zone! Domino défaussé");
-				System.out.println(1+" "+j);
 				return false;
 			} else if (!board.getZones()[Math.max(Math.min(posY+j,8),0)][Math.max(posX-5,0)].equals("vide")) {
-				System.out.println("Le domino sort de la zone! Domino défaussé");
-				System.out.println(2+" "+j);
 				return false;
 			} else if(!board.getZones()[Math.min(posY+5,8)][Math.max(Math.min(posX+j,8),0)].equals("vide")) {
-				System.out.println("Le domino sort de la zone! Domino défaussé");
-				System.out.println(3+" "+j);
 				return false;
 			} else if (!board.getZones()[Math.max(posY-5,0)][Math.max(Math.min(posX+j,8),0)].equals("vide")) {
-				System.out.println("Le domino sort de la zone! Domino défaussé");
-				System.out.println(4+" "+j);
 				return false;
 			} else if(!board.getZones()[Math.max(Math.min(posY2+j,8),0)][Math.min(posX2+5,8)].equals("vide")) {
-				System.out.println("Le domino sort de la zone! Domino défaussé");
-				System.out.println(1+" "+j+"2");
 				return false;
 			} else if (!board.getZones()[Math.max(Math.min(posY2+j,8),0)][Math.max(posX2-5,0)].equals("vide")) {
-				System.out.println("Le domino sort de la zone! Domino défaussé");
-				System.out.println(2+" "+j+"2");
 				return false;
 			} else if(!board.getZones()[Math.min(posY2+5,8)][Math.max(Math.min(posX2+j,8),0)].equals("vide")) {
-				System.out.println("Le domino sort de la zone! Domino défaussé");
-				System.out.println(3+" "+j+"2");
 				return false;
 			} else if (!board.getZones()[Math.max(posY2-5,0)][Math.max(Math.min(posX2+j,8),0)].equals("vide")) {
-				System.out.println("Le domino sort de la zone! Domino défaussé");
-				System.out.println(4+" "+j+"2");
 				return false;
 			}
 		}
